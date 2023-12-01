@@ -3,7 +3,7 @@ using UnityEngine;
 public class MovimientoJugador : MonoBehaviour
 {
     //Importamos el character controlles
-    private CharacterController characterController;
+    public CharacterController characterController;
     // Importamos los scripts que usaremos.
     public EscondertePuerta escondertePuerta;
     public SubirEscaleras subirEscaleras;
@@ -24,7 +24,7 @@ public class MovimientoJugador : MonoBehaviour
     private bool movimientoFinalEscalera3 = false;
     private float posicionZJugador;
 
-    private Vector3 movimiento = new Vector3 (0f, 0f, 0f);
+    public Vector3 movimiento = new Vector3 (0f, 0f, 0f);
     private void PulsarBoton ()
     {
 

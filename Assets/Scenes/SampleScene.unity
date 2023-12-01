@@ -2829,9 +2829,10 @@ GameObject:
   - component: {fileID: 1497319592}
   - component: {fileID: 1497319591}
   - component: {fileID: 1497319590}
-  - component: {fileID: 1497319589}
   - component: {fileID: 1497319594}
+  - component: {fileID: 1497319589}
   - component: {fileID: 1497319595}
+  - component: {fileID: 1497319596}
   m_Layer: 0
   m_Name: Jugador
   m_TagString: Player
@@ -2851,6 +2852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c8d2d86a71df645844d3d837df43ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterController: {fileID: 0}
   escondertePuerta: {fileID: 372034722}
   subirEscaleras: {fileID: 1039363216}
   velocidad: 5
@@ -2859,6 +2861,7 @@ MonoBehaviour:
   distanciaSubir: 6.5
   profundiadMovimientoJugador: 3
   haciendoAccion: 1
+  movimiento: {x: 0, y: 0, z: 0}
 --- !u!65 &1497319590
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2972,6 +2975,21 @@ MonoBehaviour:
   scriptButton: {fileID: 308253758}
   matar: 0
   laserActivo: 1
+--- !u!114 &1497319596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497319588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ba827da370726047a2a3d2196519aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 3
+  dashTime: 0.25
+  timedashCD: 1
 --- !u!1 &1517014171
 GameObject:
   m_ObjectHideFlags: 3
