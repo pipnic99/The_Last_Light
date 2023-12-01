@@ -25,7 +25,10 @@ public class MovimientoJugador : MonoBehaviour
     private float posicionZJugador;
 
     private Vector3 movimiento = new Vector3 (0f, 0f, 0f);
+    private void PulsarBoton ()
+    {
 
+    }
     void Start()
     {
         // Importamos el character controller.

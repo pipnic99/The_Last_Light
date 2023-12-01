@@ -6,7 +6,7 @@ public class Enemigo : MonoBehaviour
 {
     // Importamos el script deteccionJugador.
     public DeteccionJugador deteccionJugador;
-    public AccionMatarJugador accionMatarJugador;
+    public AccionJugador accionMatarJugador;
     // Start is called before the first frame update
     void Start()
     {

@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AccionMatarJugador : MonoBehaviour
+public class AccionJugador : MonoBehaviour
 {
     public KillEnemie killEnemie;
     public CantidadCuchillos cantidadCuchillos;
+    public Button_script scriptButton;
     public bool matar = false;
+    public bool laserActivo = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,14 @@ public class AccionMatarJugador : MonoBehaviour
         {
             matar = true;
             cantidadCuchillos.numeroCuchillos -= 1;
+        }
+        if (scriptButton.puedesPulsarBoton && Input.GetKeyDown(KeyCode.F) && laserActivo)
+        {
+            laserActivo = false;
+        }
+        else if (scriptButton.puedesPulsarBoton && Input.GetKeyDown(KeyCode.F) && !laserActivo)
+        {
+            laserActivo = true;
         }
     }
     
