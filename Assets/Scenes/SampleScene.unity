@@ -1979,6 +1979,17 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: ca5dcfc667d7ccc499618689d3a88c7d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1b3b2bf69dab2f4caacf3b012923cfe, type: 3}
+--- !u!114 &1202079795 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5164008405230176330, guid: 942f8618202693c43be8349847543417, type: 3}
+  m_PrefabInstance: {fileID: 5164008404790724389}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33241b221b8a4b34a97ab37bd8b19f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1203919298
 GameObject:
   m_ObjectHideFlags: 0
@@ -2855,6 +2866,7 @@ MonoBehaviour:
   characterController: {fileID: 0}
   escondertePuerta: {fileID: 372034722}
   subirEscaleras: {fileID: 1039363216}
+  finEscalera: {fileID: 1202079795}
   velocidad: 5
   fuerzaSalto: 8
   gravedad: 20
@@ -4369,6 +4381,30 @@ PrefabInstance:
     - target: {fileID: 5164008403929770933, guid: 942f8618202693c43be8349847543417, type: 3}
       propertyPath: escaleraIzquierda
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164008405230176331, guid: 942f8618202693c43be8349847543417, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8775121
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164008405230176331, guid: 942f8618202693c43be8349847543417, type: 3}
+      propertyPath: m_Size.z
+      value: 5.3700824
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164008405230176331, guid: 942f8618202693c43be8349847543417, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0066271536
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164008405230176331, guid: 942f8618202693c43be8349847543417, type: 3}
+      propertyPath: m_Center.y
+      value: 2.1685412
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164008405230176331, guid: 942f8618202693c43be8349847543417, type: 3}
+      propertyPath: m_Center.z
+      value: -2.100381
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164008405230176334, guid: 942f8618202693c43be8349847543417, type: 3}
+      propertyPath: m_Name
+      value: FinEscalera
       objectReference: {fileID: 0}
     - target: {fileID: 5434533690083606651, guid: 942f8618202693c43be8349847543417, type: 3}
       propertyPath: m_Name

@@ -7,6 +7,7 @@ public class MovimientoJugador : MonoBehaviour
     // Importamos los scripts que usaremos.
     public EscondertePuerta escondertePuerta;
     public SubirEscaleras subirEscaleras;
+    public FinEscalera finEscalera;
     // Creamos las variables que necesitamos
     public float velocidad = 5f;
     public float fuerzaSalto = 8f;
@@ -133,13 +134,8 @@ public class MovimientoJugador : MonoBehaviour
                 }
                 break;
             case 2:
-                if (!movimientoFinalEscalera)
-                {
-                    objetivoPosicion = transform.position + Vector3.up * distanciaSubir;
-                    movimientoFinalEscalera = true;
-                }
                 Vector3 movimientoVerticalJugador = Vector3.up * velocidad * Time.deltaTime;
-                if (transform.position.y < objetivoPosicion.y)
+                if (!finEscalera.finalEscalera)
                 {
                     characterController.Move(movimientoVerticalJugador);
                 }

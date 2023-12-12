@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BajarEscaleras : MonoBehaviour
+public class FinEscalera : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -10,7 +10,7 @@ public class BajarEscaleras : MonoBehaviour
         
     }
 
-    public bool puedesBajarEscaleras = false;
+    public bool finalEscalera = false;
     // Update is called once per frame
 
     // Ejecutamos la funcion de OnTriggerEnter para detectar cuando colisiona con nosotros un objeto con la etiqueta player.
@@ -20,7 +20,7 @@ public class BajarEscaleras : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Ponemos el valor de subirEscaleras a true.
-            puedesBajarEscaleras = true;
+            finalEscalera = true;
         }
 
     }
@@ -28,7 +28,7 @@ public class BajarEscaleras : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            puedesBajarEscaleras = false;
+            finalEscalera = false;
         }
     }
 }
