@@ -75,11 +75,11 @@ public class MovimientoJugador : MonoBehaviour
             movimientoJugadorProfundiad = true;
             if (!escondidoEnPuerta)
             {
-                objetivoPosicion = transform.position + Vector3.forward * profundiadMovimientoJugador;
+                objetivoPosicion = transform.position + Vector3.forward * (profundiadMovimientoJugador + 2f);
             }
             else if (escondidoEnPuerta)
             {
-                objetivoPosicion = transform.position + Vector3.forward * (-profundiadMovimientoJugador);
+                objetivoPosicion = transform.position + Vector3.forward * (-profundiadMovimientoJugador - 2f);
             }
             haciendoAccion = true;
         }
