@@ -20,8 +20,12 @@ public class PayerDash : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.LeftShift) && !dashCD)
         {
-            StartCoroutine(Dash());
-            dashCD = true;
+            if(!moveScript.haciendoAccion)
+            {
+                StartCoroutine(Dash());
+                dashCD = true;
+            }
+            
         }
     }
     IEnumerator Dash()

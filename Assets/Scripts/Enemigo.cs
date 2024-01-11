@@ -6,7 +6,6 @@ public class Enemigo : MonoBehaviour
 {
     // Importamos el script deteccionJugador.
     public DeteccionJugador deteccionJugador;
-    public AccionJugador accionMatarJugador;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +21,6 @@ public class Enemigo : MonoBehaviour
             Debug.Log("Animacion");
             // Asignamos el valor de viendoJugador a false.
             deteccionJugador.viendoJugador = false;
-        }
-        if (accionMatarJugador.matar)
-        {
-            Debug.Log("Animación matar");
-            Destroy(this.gameObject);
-            accionMatarJugador.matar = false;
         }
     }
 }

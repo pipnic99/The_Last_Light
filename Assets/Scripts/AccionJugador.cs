@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AccionJugador : MonoBehaviour
 {
-    public KillEnemie killEnemie;
     public CantidadCuchillos cantidadCuchillos;
     public Button_script scriptButton;
     public bool matar = false;
@@ -18,7 +17,7 @@ public class AccionJugador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (killEnemie.canKillEnemie && Input.GetKeyDown(KeyCode.E) && cantidadCuchillos.numeroCuchillos > 0)
+        if (Input.GetKeyDown(KeyCode.E) && cantidadCuchillos.numeroCuchillos > 0)
         {
             matar = true;
             cantidadCuchillos.numeroCuchillos -= 1;
@@ -32,5 +31,17 @@ public class AccionJugador : MonoBehaviour
             laserActivo = true;
         }
     }
-    
+    private void OnTriggerStay(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Enemie"))
+        {
+            if (matar)
+            {
+                collision.gameObject.SetActive(false);
+                matar = false;
+            }
+            
+        }
+    }
+
 }

@@ -68,6 +68,7 @@ public class MovimientoJugador : MonoBehaviour
         {
             upLadderPhase = 1;
             objetivoPosicion = transform.position + Vector3.forward * profundiadMovimientoJugador / 2;
+            objetivoPosicion.z = subirEscaleras.transform.position.z - 1f;
             haciendoAccion = true;
         }
         if (escondertePuerta.puedesEscondertePuerta && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
