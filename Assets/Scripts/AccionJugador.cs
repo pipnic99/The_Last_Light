@@ -8,6 +8,7 @@ public class AccionJugador : MonoBehaviour
     public Button_script scriptButton;
     public bool matar = false;
     public bool laserActivo = true;
+    private bool puedesmatar = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,12 +36,21 @@ public class AccionJugador : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemie"))
         {
+            puedesmatar = true;
             if (matar)
             {
                 collision.gameObject.SetActive(false);
                 matar = false;
             }
             
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.CompareTag("Enemie"))
+        {
+            puedesmatar = false;
+            Debug.Log(puedesmatar);
         }
     }
 

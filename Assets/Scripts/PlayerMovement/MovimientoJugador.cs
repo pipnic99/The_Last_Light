@@ -5,7 +5,7 @@ public class MovimientoJugador : MonoBehaviour
     //Importamos el character controlles
     public CharacterController characterController;
     // Importamos los scripts que usaremos.
-    public EscondertePuerta escondertePuerta;
+    //public EscondertePuerta escondertePuerta;
     public SubirEscaleras subirEscaleras;
     public FinEscalera finEscalera;
     // Creamos las variables que necesitamos
@@ -71,19 +71,19 @@ public class MovimientoJugador : MonoBehaviour
             objetivoPosicion.z = subirEscaleras.transform.position.z - 1f;
             haciendoAccion = true;
         }
-        if (escondertePuerta.puedesEscondertePuerta && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
+        /*if (escondertePuerta.puedesEscondertePuerta && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
         {
             movimientoJugadorProfundiad = true;
             if (!escondidoEnPuerta)
             {
-                objetivoPosicion = transform.position + Vector3.forward * (profundiadMovimientoJugador + 2f);
+                objetivoPosicion = transform.position + Vector3.forward * (profundiadMovimientoJugador + 7f);
             }
             else if (escondidoEnPuerta)
             {
-                objetivoPosicion = transform.position + Vector3.forward * (-profundiadMovimientoJugador - 2f);
+                objetivoPosicion = transform.position + Vector3.forward * (-profundiadMovimientoJugador - 7f);
             }
             haciendoAccion = true;
-        }
+        }*/
         if (movimientoJugadorProfundiad)
         {
 
