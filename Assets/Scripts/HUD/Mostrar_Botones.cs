@@ -12,7 +12,7 @@ public class Mostrar_Botones : MonoBehaviour
     private Image imagen;
     public Sprite spriteF;
     public Sprite spriteE;
-    //public EscondertePuerta escondertePuerta;
+    public EscondertePuerta escondertePuerta;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +22,11 @@ public class Mostrar_Botones : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if(escondertePuerta.puedesEscondertePuerta || subirEscaleras.puedesSubirEscaleras)
+        if(escondertePuerta.puedesEscondertePuerta || subirEscaleras.puedesSubirEscaleras && !movimientoJugador.haciendoAccion)
         {
             this.gameObject.SetActive(true);
-        }*/
-        if(subirEscaleras.puedesSubirEscaleras && !movimientoJugador.haciendoAccion)
+        }
+        if(subirEscaleras.puedesSubirEscaleras || escondertePuerta.puedesEscondertePuerta || movimientoJugador.puedesBajarEsclareas && !movimientoJugador.haciendoAccion)
         {
             imagen.enabled = true;
             imagen.sprite = spriteF;

@@ -5,7 +5,7 @@ public class MovimientoJugador : MonoBehaviour
     //Importamos el character controlles
     public CharacterController characterController;
     // Importamos los scripts que usaremos.
-    //public EscondertePuerta escondertePuerta;
+    public EscondertePuerta escondertePuerta;
     public SubirEscaleras subirEscaleras;
     public FinEscalera finEscalera;
     // Creamos las variables que necesitamos
@@ -17,6 +17,7 @@ public class MovimientoJugador : MonoBehaviour
     public bool haciendoAccion = true;
     // Creamos todas las booleanas que necesitaremos para las condiciones.
     private int upLadderPhase = 0;
+    private int downLadderPhase = 0;
     private Vector3 objetivoPosicion;
     private bool movimientoFinalEscalera = false;
     private bool movimientoJugadorProfundiad = false;
@@ -24,9 +25,13 @@ public class MovimientoJugador : MonoBehaviour
     private bool movimientoFinalEscalera2 = false;
     private bool movimientoFinalEscalera3 = false;
     private float posicionZJugador;
+    public bool puedesBajarEsclareas = false;
+    private bool finBajarEscalera = false;
+    private Vector3 posicionBajarEscalera;
+    public int mostrar_boton = 0;
 
-    public Vector3 movimiento = new Vector3 (0f, 0f, 0f);
-    private void PulsarBoton ()
+    public Vector3 movimiento = new Vector3(0f, 0f, 0f);
+    private void PulsarBoton()
     {
 
     }
@@ -36,7 +41,31 @@ public class MovimientoJugador : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         posicionZJugador = transform.position.z;
     }
+    private void OnTriggerStay(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("LadderDown"))
+        {
+            puedesBajarEsclareas = true;
+            Debug.Log(collision.gameObject.transform.position);
+            posicionBajarEscalera = collision.gameObject.transform.position;
 
+        }
+        if (collision.gameObject.CompareTag("FinBajarEscalera"))
+        {
+            finBajarEscalera = true;
+        }
+    }
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("LadderDown"))
+        {
+            puedesBajarEsclareas = false;
+        }
+        if (collision.gameObject.CompareTag("FinBajarEscalera"))
+        {
+            finBajarEscalera = false;
+        }
+    }
     void Update()
     {
         // Obtener entrada del jugador
@@ -71,7 +100,14 @@ public class MovimientoJugador : MonoBehaviour
             objetivoPosicion.z = subirEscaleras.transform.position.z - 1f;
             haciendoAccion = true;
         }
-        /*if (escondertePuerta.puedesEscondertePuerta && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
+        if (puedesBajarEsclareas && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
+        {
+            downLadderPhase = 1;
+            objetivoPosicion = transform.position + Vector3.forward * profundiadMovimientoJugador / 2;
+            objetivoPosicion.z = posicionBajarEscalera.z - 1f;
+            haciendoAccion = true;
+        }
+        if (escondertePuerta.puedesEscondertePuerta && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
         {
             movimientoJugadorProfundiad = true;
             if (!escondidoEnPuerta)
@@ -83,7 +119,7 @@ public class MovimientoJugador : MonoBehaviour
                 objetivoPosicion = transform.position + Vector3.forward * (-profundiadMovimientoJugador - 7f);
             }
             haciendoAccion = true;
-        }*/
+        }
         if (movimientoJugadorProfundiad)
         {
 
@@ -194,9 +230,9 @@ public class MovimientoJugador : MonoBehaviour
                 }
                 break;
             case 5:
-                
+
                 Debug.Log(movimiento);
-                transform.position = new Vector3 (transform.position.z, transform.position.y, -1.23f);
+                transform.position = new Vector3(transform.position.z, transform.position.y, -1.23f);
                 upLadderPhase = 0;
                 movimientoFinalEscalera = false;
                 movimientoFinalEscalera2 = false;
@@ -207,10 +243,63 @@ public class MovimientoJugador : MonoBehaviour
                 break;
         }
 
-        if(!haciendoAccion)
+        switch (downLadderPhase)
+        {
+            case 1:
+                Vector3 movimientoPrincipioProfundidad = Vector3.forward * velocidad * Time.deltaTime;
+                if (transform.position.z < objetivoPosicion.z && !movimientoFinalEscalera)
+                {
+                    characterController.Move(movimientoPrincipioProfundidad);
+                }
+                else
+                {
+                    downLadderPhase = 2;
+                }
+                break;
+            case 2:
+                Vector3 movimientoVerticalJugador = Vector3.down * velocidad * Time.deltaTime;
+                if (!finBajarEscalera)
+                {
+                    characterController.Move(movimientoVerticalJugador);
+                }
+                else
+                {
+                    downLadderPhase = 3;
+                }
+                break;
+            case 3:
+                if (!movimientoFinalEscalera3)
+                {
+                    objetivoPosicion = new Vector3(transform.position.x, transform.position.y, -1.23f); // Mover 2 unidades hacia adelante en el eje Z
+                    movimientoFinalEscalera3 = true;
+                }
+                Vector3 movimientoFinalProfundidad = Vector3.back * velocidad * Time.deltaTime;
+                if (transform.position.z > objetivoPosicion.z)
+                {
+                    characterController.Move(movimientoFinalProfundidad);
+                    if (transform.position.z < objetivoPosicion.z)
+                    {
+                        downLadderPhase = 4;
+                    }
+                }
+                break;
+            case 4:
+
+                Debug.Log(movimiento);
+                transform.position = new Vector3(transform.position.z, transform.position.y, -1.23f);
+                downLadderPhase = 0;
+                movimientoFinalEscalera = false;
+                movimientoFinalEscalera2 = false;
+                movimientoFinalEscalera3 = false;
+                haciendoAccion = false;
+                break;
+            default:
+                break;
+        }
+        if (!haciendoAccion)
         {
             characterController.Move(movimiento * Time.deltaTime);
-            if(transform.position.z != -1.23f && !escondidoEnPuerta)
+            if (transform.position.z != -1.23f && !escondidoEnPuerta)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, -1.23f);
             }
