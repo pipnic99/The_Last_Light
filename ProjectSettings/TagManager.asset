@@ -9,6 +9,8 @@ TagManager:
   - Ladder
   - LadderDown
   - FinBajarEscalera
+  - EscondertePared
+  - BotonLaser
   layers:
   - Default
   - TransparentFX

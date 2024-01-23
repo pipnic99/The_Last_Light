@@ -5,7 +5,6 @@ public class MovimientoJugador : MonoBehaviour
     //Importamos el character controlles
     public CharacterController characterController;
     // Importamos los scripts que usaremos.
-    public EscondertePuerta escondertePuerta;
     public SubirEscaleras subirEscaleras;
     public FinEscalera finEscalera;
     // Creamos las variables que necesitamos
@@ -27,6 +26,7 @@ public class MovimientoJugador : MonoBehaviour
     private float posicionZJugador;
     public bool puedesBajarEsclareas = false;
     private bool finBajarEscalera = false;
+    public bool puedesEscondertePuerta = false;
     private Vector3 posicionBajarEscalera;
     public int mostrar_boton = 0;
 
@@ -54,6 +54,10 @@ public class MovimientoJugador : MonoBehaviour
         {
             finBajarEscalera = true;
         }
+        if (collision.gameObject.CompareTag("EscondertePared"))
+        {
+            puedesEscondertePuerta = true;
+        }
     }
     private void OnTriggerExit(Collider collision)
     {
@@ -64,6 +68,10 @@ public class MovimientoJugador : MonoBehaviour
         if (collision.gameObject.CompareTag("FinBajarEscalera"))
         {
             finBajarEscalera = false;
+        }
+        if (collision.gameObject.CompareTag("EscondertePared"))
+        {
+            puedesEscondertePuerta = false;
         }
     }
     void Update()
@@ -82,7 +90,7 @@ public class MovimientoJugador : MonoBehaviour
             movimiento.y = -gravedad * Time.deltaTime;
 
             // Manejar saltos
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && !haciendoAccion)
             {
                 movimiento.y = fuerzaSalto;
             }
@@ -107,7 +115,7 @@ public class MovimientoJugador : MonoBehaviour
             objetivoPosicion.z = posicionBajarEscalera.z - 1f;
             haciendoAccion = true;
         }
-        if (escondertePuerta.puedesEscondertePuerta && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
+        if (puedesEscondertePuerta && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
         {
             movimientoJugadorProfundiad = true;
             if (!escondidoEnPuerta)

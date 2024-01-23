@@ -18,7 +18,7 @@ public class PayerDash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !dashCD)
+        if(Input.GetKeyDown(KeyCode.LeftShift) && !dashCD && moveScript.characterController.isGrounded)
         {
             if(!moveScript.haciendoAccion)
             {
@@ -34,10 +34,13 @@ public class PayerDash : MonoBehaviour
 
         while(Time.time < startTime + dashTime)
         {
-            moveScript.characterController.Move(moveScript.movimiento * dashSpeed * Time.deltaTime);
+            moveScript.haciendoAccion = true;
+            Vector3 movimiento = new Vector3(moveScript.movimiento.x * dashSpeed, moveScript.movimiento.y, moveScript.movimiento.z);
+            moveScript.characterController.Move(movimiento * Time.deltaTime);
 
             yield return null;
         }
+        moveScript.haciendoAccion = false;
         yield return new WaitForSeconds(timedashCD);
         dashCD = false;
     }

@@ -5,10 +5,10 @@ using UnityEngine;
 public class AccionJugador : MonoBehaviour
 {
     public CantidadCuchillos cantidadCuchillos;
-    public Button_script scriptButton;
     public bool matar = false;
     public bool laserActivo = true;
     public bool puedesmatar = false;
+    public bool puedesPulsarBoton = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +23,11 @@ public class AccionJugador : MonoBehaviour
             matar = true;
             cantidadCuchillos.numeroCuchillos -= 1;
         }
-        if (scriptButton.puedesPulsarBoton && Input.GetKeyDown(KeyCode.F) && laserActivo)
+        if (puedesPulsarBoton && Input.GetKeyDown(KeyCode.F) && laserActivo)
         {
             laserActivo = false;
         }
-        else if (scriptButton.puedesPulsarBoton && Input.GetKeyDown(KeyCode.F) && !laserActivo)
+        else if (puedesPulsarBoton && Input.GetKeyDown(KeyCode.F) && !laserActivo)
         {
             laserActivo = true;
         }
@@ -45,6 +45,10 @@ public class AccionJugador : MonoBehaviour
             }
             
         }
+        if (collision.gameObject.CompareTag("BotonLaser"))
+        {
+            puedesPulsarBoton = true;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -52,6 +56,10 @@ public class AccionJugador : MonoBehaviour
         {
             puedesmatar = false;
             Debug.Log(puedesmatar);
+        }
+        if (other.gameObject.CompareTag("BotonLaser"))
+        {
+            puedesPulsarBoton = false;
         }
     }
 
