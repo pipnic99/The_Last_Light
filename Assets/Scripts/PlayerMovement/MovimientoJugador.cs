@@ -4,9 +4,6 @@ public class MovimientoJugador : MonoBehaviour
 {
     //Importamos el character controlles
     public CharacterController characterController;
-    // Importamos los scripts que usaremos.
-    public SubirEscaleras subirEscaleras;
-    public FinEscalera finEscalera;
     // Creamos las variables que necesitamos
     public float velocidad = 5f;
     public float fuerzaSalto = 8f;
@@ -21,7 +18,7 @@ public class MovimientoJugador : MonoBehaviour
     private bool movimientoFinalEscalera = false;
     private bool movimientoJugadorProfundiad = false;
     private bool escondidoEnPuerta = false;
-    private bool movimientoFinalEscalera2 = false;
+    //private bool movimientoFinalEscalera2 = false;
     private bool movimientoFinalEscalera3 = false;
     private float posicionZJugador;
     public bool puedesBajarEsclareas = false;
@@ -29,6 +26,9 @@ public class MovimientoJugador : MonoBehaviour
     public bool puedesEscondertePuerta = false;
     private Vector3 posicionBajarEscalera;
     public int mostrar_boton = 0;
+    private Vector3 PosicionEscalera = new Vector3 (0f,0f,0f);
+    private bool finSubirEscalera = false;
+    private bool subirEscalera = false;
 
     public Vector3 movimiento = new Vector3(0f, 0f, 0f);
     private void PulsarBoton()
@@ -50,6 +50,10 @@ public class MovimientoJugador : MonoBehaviour
             posicionBajarEscalera = collision.gameObject.transform.position;
 
         }
+        if (collision.gameObject.CompareTag("FinSubirEscalera"))
+        {
+            finSubirEscalera = true;
+        }
         if (collision.gameObject.CompareTag("FinBajarEscalera"))
         {
             finBajarEscalera = true;
@@ -57,6 +61,11 @@ public class MovimientoJugador : MonoBehaviour
         if (collision.gameObject.CompareTag("EscondertePared"))
         {
             puedesEscondertePuerta = true;
+        }
+        if (collision.gameObject.CompareTag("Ladder"))
+        {
+            subirEscalera = true;
+            PosicionEscalera.z = collision.gameObject.transform.position.z;
         }
     }
     private void OnTriggerExit(Collider collision)
@@ -69,9 +78,17 @@ public class MovimientoJugador : MonoBehaviour
         {
             finBajarEscalera = false;
         }
+        if (collision.gameObject.CompareTag("FinSubirEscalera"))
+        {
+            finSubirEscalera = false;
+        }
         if (collision.gameObject.CompareTag("EscondertePared"))
         {
             puedesEscondertePuerta = false;
+        }
+        if (collision.gameObject.CompareTag("Ladder"))
+        {
+            subirEscalera = false;
         }
     }
     void Update()
@@ -101,11 +118,11 @@ public class MovimientoJugador : MonoBehaviour
         }
 
         // Aplicar movimiento al CharacterController
-        if (subirEscaleras.puedesSubirEscaleras && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
+        if (subirEscalera && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
         {
             upLadderPhase = 1;
             objetivoPosicion = transform.position + Vector3.forward * profundiadMovimientoJugador / 2;
-            objetivoPosicion.z = subirEscaleras.transform.position.z - 1f;
+            objetivoPosicion.z = PosicionEscalera.z - 1f;
             haciendoAccion = true;
         }
         if (puedesBajarEsclareas && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
@@ -180,45 +197,14 @@ public class MovimientoJugador : MonoBehaviour
                 break;
             case 2:
                 Vector3 movimientoVerticalJugador = Vector3.up * velocidad * Time.deltaTime;
-                if (!finEscalera.finalEscalera)
+                if (!finSubirEscalera)
                 {
                     characterController.Move(movimientoVerticalJugador);
                 }
                 else
                 {
-                    upLadderPhase = 3;
-
-                }
-                break;
-            case 3:
-                if (!movimientoFinalEscalera2)
-                {
-                    if (subirEscaleras.escaleraIzquierda)
-                    {
-                        objetivoPosicion = transform.position + Vector3.left * profundiadMovimientoJugador / 2; // Mover 2 unidades hacia adelante en el eje Z
-                        movimientoFinalEscalera2 = true;
-                    }
-                    else if (!subirEscaleras.escaleraIzquierda)
-                    {
-                        objetivoPosicion = transform.position + Vector3.right * profundiadMovimientoJugador / 2; // Mover 2 unidades hacia adelante en el eje Z
-                        movimientoFinalEscalera2 = true;
-                    }
-
-                }
-                //Vector3 movimientoProfundidad = Vector3.right * velocidad * Time.deltaTime;
-                if (transform.position.x < objetivoPosicion.x && !subirEscaleras.escaleraIzquierda)
-                {
-                    Vector3 movimientoProfundidad = Vector3.right * velocidad * Time.deltaTime;
-                    characterController.Move(movimientoProfundidad);
-                }
-                else if (transform.position.x > objetivoPosicion.x && subirEscaleras.escaleraIzquierda)
-                {
-                    Vector3 movimientoProfundidad = Vector3.right * -velocidad * Time.deltaTime;
-                    characterController.Move(movimientoProfundidad);
-                }
-                else
-                {
                     upLadderPhase = 4;
+
                 }
                 break;
             case 4:
@@ -243,7 +229,7 @@ public class MovimientoJugador : MonoBehaviour
                 transform.position = new Vector3(transform.position.z, transform.position.y, -1.23f);
                 upLadderPhase = 0;
                 movimientoFinalEscalera = false;
-                movimientoFinalEscalera2 = false;
+                //movimientoFinalEscalera2 = false;
                 movimientoFinalEscalera3 = false;
                 haciendoAccion = false;
                 break;
@@ -297,7 +283,7 @@ public class MovimientoJugador : MonoBehaviour
                 transform.position = new Vector3(transform.position.z, transform.position.y, -1.23f);
                 downLadderPhase = 0;
                 movimientoFinalEscalera = false;
-                movimientoFinalEscalera2 = false;
+                //movimientoFinalEscalera2 = false;
                 movimientoFinalEscalera3 = false;
                 haciendoAccion = false;
                 break;

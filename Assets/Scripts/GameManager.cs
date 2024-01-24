@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     {
         // Esperar 1 segundo
         yield return new WaitForSeconds(2f);
-
+        cameraManager.SwitchCamera(cameraManager.camaraPlayerFollow);
+        yield return new WaitForSeconds(2f);
         // Hacer algo después de esperar
         movimientoJugador.haciendoAccion = false;
     }
@@ -29,7 +30,6 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                cameraManager.SwitchCamera(cameraManager.camaraPlayerFollow);
                 StartCoroutine(Esperar1S());
             }
         }

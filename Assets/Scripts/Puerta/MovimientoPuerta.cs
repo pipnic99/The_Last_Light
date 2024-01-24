@@ -4,23 +4,42 @@ using UnityEngine;
 
 public class MovimientoPuerta : MonoBehaviour
 {
-    private bool moverpuerta;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float velocidad = 2.0f;  // Puedes ajustar la velocidad según tus necesidades
 
-    // Update is called once per frame
     void Update()
     {
+        // Verifica si se ha presionado la tecla Enter
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            moverpuerta = true;
+            // Llama a la función para iniciar el movimiento
+            MoverObjetoEnX();
         }
-        while(moverpuerta = true && this.transform.position.x < -3.4f)
+    }
+
+    void MoverObjetoEnX()
+    {
+        // Posición inicial
+        Vector3 posicionInicial = transform.position;
+
+        // Posición final desplazada en -1 en el eje X
+        Vector3 posicionFinal = new Vector3(posicionInicial.x, posicionInicial.y , posicionInicial.z + 2.0f);
+
+        // Inicia la interpolación hacia la posición final
+        StartCoroutine(InterpolarPosicion(posicionInicial, posicionFinal, velocidad));
+    }
+
+    System.Collections.IEnumerator InterpolarPosicion(Vector3 inicio, Vector3 fin, float duracion)
+    {
+        float tiempo = 0f;
+
+        while (tiempo < 1f)
         {
-            transform.Rotate(0f, 0.1f, 0f);
+            tiempo += Time.deltaTime / duracion;
+            transform.position = Vector3.Lerp(inicio, fin, tiempo);
+            yield return null;
         }
+
+        // Asegúrate de que la posición final sea exacta
+        transform.position = fin;
     }
 }
