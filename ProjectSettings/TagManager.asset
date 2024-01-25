@@ -12,6 +12,7 @@ TagManager:
   - EscondertePared
   - BotonLaser
   - FinSubirEscalera
+  - LuzParpadeante
   layers:
   - Default
   - TransparentFX
