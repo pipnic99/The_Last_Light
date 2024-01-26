@@ -67,6 +67,10 @@ public class MovimientoJugador : MonoBehaviour
             subirEscalera = true;
             PosicionEscalera.z = collision.gameObject.transform.position.z;
         }
+        if (collision.gameObject.CompareTag("Laser"))
+        {
+            Debug.Log("Has tocado el laser");
+        }
     }
     private void OnTriggerExit(Collider collision)
     {
