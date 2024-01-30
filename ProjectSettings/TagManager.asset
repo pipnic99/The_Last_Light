@@ -13,7 +13,8 @@ TagManager:
   - BotonLaser
   - FinSubirEscalera
   - LuzParpadeante
-  - Laser
+  - LaserApagado
+  - LaserEncendido
   layers:
   - Default
   - TransparentFX

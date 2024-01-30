@@ -5,16 +5,18 @@ namespace QFX.SFX
 {
     public class SFX_BeamWeapon : SFX_ControlledObject
     {
+        public bool estelaser;
         private GameObject jugador;
         private AccionJugador accionJugador;
         private BoxCollider boxCollider;
+        private MovimientoJugador movimientoJugador;
 
         public Transform StartTransform;
 
         [HideInInspector] public Vector3 EndPosition;
 
         public GameObject LaunchParticleSystem;
-        public Light LaunchLight;
+        //public Light LaunchLight;
 
         public GameObject ImpactParticleSystem;
         public float ImpactOffset;
@@ -42,7 +44,7 @@ namespace QFX.SFX
             _lineRenderer = Instantiate(LineRenderer, transform, true);
 
             _lineRenderer.positionCount = 2;
-            LaunchLight.intensity = 0;
+            //LaunchLight.intensity = 0;
             _lineRenderer.widthMultiplier = 0;
 
             var launchGo = Instantiate(LaunchParticleSystem, StartTransform.position, Quaternion.identity,
@@ -50,6 +52,7 @@ namespace QFX.SFX
 
             _launchPs = launchGo.GetComponent<ParticleSystem>();
             _impactPs = Instantiate(ImpactParticleSystem).GetComponent<ParticleSystem>();
+            //Buscamos un game object con nombe juador y lo guardamos para poder acceder a su script llamado accion jugador y tambien nos importamos nuestro box collider
             jugador = GameObject.Find("Jugador");
             accionJugador = jugador.GetComponent<AccionJugador>();
             boxCollider = GetComponent<BoxCollider>();
@@ -76,13 +79,14 @@ namespace QFX.SFX
         }
 
         private void Update()
-        {
-            if (accionJugador.laserActivo)
+        {            
+            // Creamos una condicion que solo puede encender el laser si el objeto tiene el tag LaserEncendido de esta manera si apagamos los laseres desde otro boton no se apagan todos
+            if (accionJugador.laserActivo && this.gameObject.tag == "LaserEncendido")
             {
                 Run();
                 boxCollider.enabled = true;
             }
-            else if (!accionJugador.laserActivo)
+            else if (!accionJugador.laserActivo && this.gameObject.tag == "LaserApagado")
             {
                 Stop();
                 boxCollider.enabled = false;
@@ -129,7 +133,7 @@ namespace QFX.SFX
             //                _impactPs.Stop(true);
             //            }
 
-            LaunchLight.intensity = LightIntensity * _appearProgress;
+            //LaunchLight.intensity = LightIntensity * _appearProgress;
 
             UpdateLineRenderer();
         }

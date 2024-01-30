@@ -46,7 +46,6 @@ public class MovimientoJugador : MonoBehaviour
         if (collision.gameObject.CompareTag("LadderDown"))
         {
             puedesBajarEsclareas = true;
-            Debug.Log(collision.gameObject.transform.position);
             posicionBajarEscalera = collision.gameObject.transform.position;
 
         }
@@ -67,7 +66,7 @@ public class MovimientoJugador : MonoBehaviour
             subirEscalera = true;
             PosicionEscalera.z = collision.gameObject.transform.position.z;
         }
-        if (collision.gameObject.CompareTag("Laser"))
+        if (collision.gameObject.CompareTag("LaserEncendido"))
         {
             Debug.Log("Has tocado el laser");
         }
@@ -229,7 +228,6 @@ public class MovimientoJugador : MonoBehaviour
                 break;
             case 5:
 
-                Debug.Log(movimiento);
                 transform.position = new Vector3(transform.position.z, transform.position.y, -1.23f);
                 upLadderPhase = 0;
                 movimientoFinalEscalera = false;
@@ -283,7 +281,6 @@ public class MovimientoJugador : MonoBehaviour
                 break;
             case 4:
 
-                Debug.Log(movimiento);
                 transform.position = new Vector3(transform.position.z, transform.position.y, -1.23f);
                 downLadderPhase = 0;
                 movimientoFinalEscalera = false;
