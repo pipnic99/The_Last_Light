@@ -21,11 +21,15 @@ public class Mostrar_Botones : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(movimientoJugador.puedesEscondertePuerta || subirEscaleras.puedesSubirEscaleras && !movimientoJugador.haciendoAccion)
+        if(movimientoJugador.puedesEscondertePuerta || movimientoJugador.subirEscalera && !movimientoJugador.haciendoAccion)
         {
             this.gameObject.SetActive(true);
         }
-        if(subirEscaleras.puedesSubirEscaleras || movimientoJugador.puedesEscondertePuerta || movimientoJugador.puedesBajarEsclareas && !movimientoJugador.haciendoAccion)
+        if(movimientoJugador.haciendoAccion)
+        {
+            imagen.enabled = false;
+        }
+        if (movimientoJugador.subirEscalera || movimientoJugador.puedesEscondertePuerta || movimientoJugador.puedesBajarEsclareas && !movimientoJugador.haciendoAccion)
         {
             imagen.enabled = true;
             imagen.sprite = spriteF;
@@ -39,10 +43,6 @@ public class Mostrar_Botones : MonoBehaviour
         {
             imagen.enabled = true;
             imagen.sprite = spriteF;
-        }
-        else if(movimientoJugador.haciendoAccion)
-        {
-            imagen.enabled = false;
         }
         else
         {

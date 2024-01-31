@@ -28,7 +28,7 @@ public class MovimientoJugador : MonoBehaviour
     public int mostrar_boton = 0;
     private Vector3 PosicionEscalera = new Vector3 (0f,0f,0f);
     private bool finSubirEscalera = false;
-    private bool subirEscalera = false;
+    public bool subirEscalera = false;
 
     public Vector3 movimiento = new Vector3(0f, 0f, 0f);
     private void PulsarBoton()
@@ -291,7 +291,7 @@ public class MovimientoJugador : MonoBehaviour
             default:
                 break;
         }
-        if (!haciendoAccion)
+        if (!haciendoAccion && !escondidoEnPuerta)
         {
             characterController.Move(movimiento * Time.deltaTime);
             if (transform.position.z != -1.23f && !escondidoEnPuerta)
