@@ -4,6 +4,7 @@ public class MovimientoJugador : MonoBehaviour
 {
     //Importamos el character controlles
     public CharacterController characterController;
+    private Animator animator;
     // Creamos las variables que necesitamos
     public float velocidad = 5f;
     public float fuerzaSalto = 8f;
@@ -40,6 +41,7 @@ public class MovimientoJugador : MonoBehaviour
         // Importamos el character controller.
         characterController = GetComponent<CharacterController>();
         posicionZJugador = transform.position.z;
+        animator = GetComponent<Animator>();
     }
     private void OnTriggerStay(Collider collision)
     {
@@ -101,7 +103,7 @@ public class MovimientoJugador : MonoBehaviour
         float movimientoVertical = Input.GetAxis("Vertical");
 
         // Calcular movimiento del jugador
-        Vector3 direccion = transform.right * movimientoHorizontal + transform.forward * movimientoVertical;
+        Vector3 direccion = transform.right * movimientoVertical + transform.forward * movimientoHorizontal;
         movimiento.x = direccion.x * velocidad;
 
         // Aplicar gravedad
@@ -293,6 +295,7 @@ public class MovimientoJugador : MonoBehaviour
         }
         if (!haciendoAccion && !escondidoEnPuerta)
         {
+            animator.SetBool("isMoving", true);
             characterController.Move(movimiento * Time.deltaTime);
             if (transform.position.z != -1.23f && !escondidoEnPuerta)
             {

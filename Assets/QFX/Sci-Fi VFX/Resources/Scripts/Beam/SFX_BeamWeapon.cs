@@ -53,7 +53,7 @@ namespace QFX.SFX
             _launchPs = launchGo.GetComponent<ParticleSystem>();
             _impactPs = Instantiate(ImpactParticleSystem).GetComponent<ParticleSystem>();
             //Buscamos un game object con nombe juador y lo guardamos para poder acceder a su script llamado accion jugador y tambien nos importamos nuestro box collider
-            jugador = GameObject.Find("Jugador");
+            jugador = GameObject.Find("Chris_Vector");
             accionJugador = jugador.GetComponent<AccionJugador>();
             boxCollider = GetComponent<BoxCollider>();
 
