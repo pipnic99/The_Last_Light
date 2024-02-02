@@ -30,11 +30,26 @@ public class MovimientoJugador : MonoBehaviour
     private Vector3 PosicionEscalera = new Vector3 (0f,0f,0f);
     private bool finSubirEscalera = false;
     public bool subirEscalera = false;
+    public int leftorright;
 
     public Vector3 movimiento = new Vector3(0f, 0f, 0f);
-    private void PulsarBoton()
+    private void Rotar()
     {
-
+        float elapsedTime = 0f;
+        // Nos guardamos la escala actual por si hacemos alguna modificación poder volver a la escala original.
+        Vector3 nuevaEscala = transform.localScale;
+        // Guardamos temporalmente la rotacion de nuestro enemigo.
+        Vector3 nuevaRotacion = transform.eulerAngles;
+        // Creamos un bucle infinito mientras que la rotación no este completa.
+        while (elapsedTime < 1f)
+        {
+            // Aumentamos el valor de elapsedTime en funcion del tiempo que ha transcurrido
+            elapsedTime += Time.deltaTime;
+            // Calcula un valor suavizado para la rotación
+            float tRotacion = Mathf.SmoothStep(0, 1, elapsedTime / 1f);
+            // Rotamos el enemigo por valor de 180º en la escala Y asignando el valor de suavizado que hemos creado en la linea anterior.
+            transform.eulerAngles = Vector3.Lerp(nuevaRotacion, nuevaRotacion + new Vector3(0f, 180f, 0f), tRotacion);
+        }
     }
     void Start()
     {
@@ -100,10 +115,36 @@ public class MovimientoJugador : MonoBehaviour
     {
         // Obtener entrada del jugador
         float movimientoHorizontal = Input.GetAxis("Horizontal");
+        int movimientoHorizontalint = Mathf.RoundToInt(movimientoHorizontal);
         float movimientoVertical = Input.GetAxis("Vertical");
-
+        if(Mathf.Abs(movimientoHorizontal) > 0)
+        {
+            animator.SetBool("IsWalking", true);
+        }
+        else
+        {
+            animator.SetBool("IsWalking", false);
+        }
+        if(Mathf.Abs(movimientoHorizontal) < 0.5 && movimientoVertical < 0.5 && !haciendoAccion)
+        {
+            animator.SetBool("IsIdle", true);
+        }
+        else
+        {
+            animator.SetBool("IsIdle", false);
+        }
+        if(movimientoHorizontalint < -0.5f && transform.rotation.y > 0)
+        {
+            Rotar();
+            Debug.Log("giro izquierda");
+        }
+        else if(movimientoHorizontalint > 0.5f && transform.rotation.y < 0)
+        {
+            Rotar();
+            Debug.Log("giroderecha");
+        }
         // Calcular movimiento del jugador
-        Vector3 direccion = transform.right * movimientoVertical + transform.forward * movimientoHorizontal;
+        Vector3 direccion = transform.right * movimientoVertical + transform.forward * Mathf.Abs(movimientoHorizontal);
         movimiento.x = direccion.x * velocidad;
 
         // Aplicar gravedad
@@ -295,7 +336,6 @@ public class MovimientoJugador : MonoBehaviour
         }
         if (!haciendoAccion && !escondidoEnPuerta)
         {
-            animator.SetBool("isMoving", true);
             characterController.Move(movimiento * Time.deltaTime);
             if (transform.position.z != -1.23f && !escondidoEnPuerta)
             {
