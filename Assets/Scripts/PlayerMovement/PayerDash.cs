@@ -9,10 +9,12 @@ public class PayerDash : MonoBehaviour
     public float dashTime;
     public float timedashCD;
     private bool dashCD = false;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         moveScript = GetComponent<MovimientoJugador>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -31,8 +33,8 @@ public class PayerDash : MonoBehaviour
     IEnumerator Dash()
     {
         float startTime = Time.time;
-
-        while(Time.time < startTime + dashTime)
+        animator.SetInteger("Dash_Phase", 1);
+        while (Time.time < startTime + dashTime)
         {
             moveScript.haciendoAccion = true;
             Vector3 movimiento = new Vector3(moveScript.movimiento.x * dashSpeed, moveScript.movimiento.y, moveScript.movimiento.z);
@@ -40,6 +42,7 @@ public class PayerDash : MonoBehaviour
 
             yield return null;
         }
+        animator.SetInteger("Dash_Phase", 0);
         moveScript.haciendoAccion = false;
         yield return new WaitForSeconds(timedashCD);
         dashCD = false;

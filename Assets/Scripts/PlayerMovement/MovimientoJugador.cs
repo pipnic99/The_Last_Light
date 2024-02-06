@@ -31,9 +31,14 @@ public class MovimientoJugador : MonoBehaviour
     private bool finSubirEscalera = false;
     public bool subirEscalera = false;
     public int leftorright;
+    private bool canRotate = false;
+    private bool yaGiradoIzquierda = false;
+    private bool yaGiradoDerecha = true;
+    bool movimientoAnteriorIzquierda = false;
+    bool movimientoAnteriorDerecha = false;
 
     public Vector3 movimiento = new Vector3(0f, 0f, 0f);
-    private void Rotar()
+    private void RotarIzquierda()
     {
         float elapsedTime = 0f;
         // Nos guardamos la escala actual por si hacemos alguna modificación poder volver a la escala original.
@@ -49,6 +54,24 @@ public class MovimientoJugador : MonoBehaviour
             float tRotacion = Mathf.SmoothStep(0, 1, elapsedTime / 1f);
             // Rotamos el enemigo por valor de 180º en la escala Y asignando el valor de suavizado que hemos creado en la linea anterior.
             transform.eulerAngles = Vector3.Lerp(nuevaRotacion, nuevaRotacion + new Vector3(0f, 180f, 0f), tRotacion);
+        }
+    }
+    private void RotarDerecha()
+    {
+        float elapsedTime = 0f;
+        // Nos guardamos la escala actual por si hacemos alguna modificación poder volver a la escala original.
+        Vector3 nuevaEscala = transform.localScale;
+        // Guardamos temporalmente la rotacion de nuestro enemigo.
+        Vector3 nuevaRotacion = transform.eulerAngles;
+        // Creamos un bucle infinito mientras que la rotación no este completa.
+        while (elapsedTime < 1f)
+        {
+            // Aumentamos el valor de elapsedTime en funcion del tiempo que ha transcurrido
+            elapsedTime += Time.deltaTime;
+            // Calcula un valor suavizado para la rotación
+            float tRotacion = Mathf.SmoothStep(0, 1, elapsedTime / 1f);
+            // Rotamos el enemigo por valor de 180º en la escala Y asignando el valor de suavizado que hemos creado en la linea anterior.
+            transform.eulerAngles = Vector3.Lerp(nuevaRotacion, nuevaRotacion + new Vector3(0f, -180f, 0f), tRotacion);
         }
     }
     void Start()
@@ -113,11 +136,11 @@ public class MovimientoJugador : MonoBehaviour
     }
     void Update()
     {
-        // Obtener entrada del jugador
         float movimientoHorizontal = Input.GetAxis("Horizontal");
         int movimientoHorizontalint = Mathf.RoundToInt(movimientoHorizontal);
         float movimientoVertical = Input.GetAxis("Vertical");
-        if(Mathf.Abs(movimientoHorizontal) > 0)
+
+        if (Mathf.Abs(movimientoHorizontal) > 0 && !haciendoAccion)
         {
             animator.SetBool("IsWalking", true);
         }
@@ -125,7 +148,8 @@ public class MovimientoJugador : MonoBehaviour
         {
             animator.SetBool("IsWalking", false);
         }
-        if(Mathf.Abs(movimientoHorizontal) < 0.5 && movimientoVertical < 0.5 && !haciendoAccion)
+
+        if (Mathf.Abs(movimientoHorizontal) == 0 && movimientoVertical < 0.5 && !haciendoAccion)
         {
             animator.SetBool("IsIdle", true);
         }
@@ -133,20 +157,28 @@ public class MovimientoJugador : MonoBehaviour
         {
             animator.SetBool("IsIdle", false);
         }
-        if(movimientoHorizontalint < -0.5f && transform.rotation.y > 0)
+
+        if (movimientoHorizontal < 0f && !yaGiradoIzquierda && !movimientoAnteriorIzquierda)
         {
-            Rotar();
+            RotarIzquierda();
             Debug.Log("giro izquierda");
+            yaGiradoIzquierda = true;
+            movimientoAnteriorIzquierda = true;
+            movimientoAnteriorDerecha = false;
+            yaGiradoDerecha = false;
         }
-        else if(movimientoHorizontalint > 0.5f && transform.rotation.y < 0)
+        else if (movimientoHorizontal > 0f && !yaGiradoDerecha && !movimientoAnteriorDerecha)
         {
-            Rotar();
-            Debug.Log("giroderecha");
+            RotarDerecha();
+            Debug.Log("giro derecha");
+            yaGiradoDerecha = true;
+            movimientoAnteriorDerecha = true;
+            movimientoAnteriorIzquierda = false;
+            yaGiradoIzquierda = false;
         }
         // Calcular movimiento del jugador
         Vector3 direccion = transform.right * movimientoVertical + transform.forward * Mathf.Abs(movimientoHorizontal);
         movimiento.x = direccion.x * velocidad;
-
         // Aplicar gravedad
         if (characterController.isGrounded)
         {
