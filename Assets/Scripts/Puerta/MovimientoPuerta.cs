@@ -5,11 +5,11 @@ using UnityEngine;
 public class MovimientoPuerta : MonoBehaviour
 {
     public float velocidad = 2.0f;  // Puedes ajustar la velocidad según tus necesidades
-
+    public GameManager gameManager;
     void Update()
     {
         // Verifica si se ha presionado la tecla Enter
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && gameManager.principioJuego)
         {
             // Llama a la función para iniciar el movimiento
             MoverObjetoEnX();

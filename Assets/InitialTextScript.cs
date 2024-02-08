@@ -15,7 +15,7 @@ public class InitialTextScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 }
