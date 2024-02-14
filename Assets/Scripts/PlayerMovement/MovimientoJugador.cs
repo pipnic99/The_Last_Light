@@ -31,7 +31,6 @@ public class MovimientoJugador : MonoBehaviour
     private bool finSubirEscalera = false;
     public bool subirEscalera = false;
     public int leftorright;
-    private bool canRotate = false;
     private bool yaGiradoIzquierda = false;
     private bool yaGiradoDerecha = true;
     bool movimientoAnteriorIzquierda = false;

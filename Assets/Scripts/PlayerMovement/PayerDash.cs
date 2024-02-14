@@ -37,7 +37,7 @@ public class PayerDash : MonoBehaviour
         while (Time.time < startTime + dashTime)
         {
             moveScript.haciendoAccion = true;
-            Vector3 movimiento = new Vector3(moveScript.movimiento.x * dashSpeed, moveScript.movimiento.y, moveScript.movimiento.z);
+            Vector3 movimiento = new Vector3(moveScript.movimiento.x * animator.GetFloat("DashSpeed"), moveScript.movimiento.y, moveScript.movimiento.z);
             moveScript.characterController.Move(movimiento * Time.deltaTime);
 
             yield return null;
