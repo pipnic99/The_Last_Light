@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public MovimientoJugador movimientoJugador;
     public GameObject[] hudGameObjects;
     public GameObject[] playMenu;
+    public bool canpause = false;
     // Start is called before the first frame update
 
     // Creamos una corutina para esperar 1s despues de pulsar enter y que nos deje mover pasado el segundo.
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         // Hacer algo después de esperar
         movimientoJugador.haciendoAccion = false;
+        canpause = true;
     }
     void Start()
     {
