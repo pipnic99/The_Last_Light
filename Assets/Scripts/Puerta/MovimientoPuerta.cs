@@ -13,6 +13,7 @@ public class MovimientoPuerta : MonoBehaviour
         {
             // Llama a la función para iniciar el movimiento
             MoverObjetoEnX();
+            enabled = false;
         }
     }
 

@@ -4,35 +4,67 @@ using UnityEngine;
 
 public class ScriptTutorial : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject tutorial;
+    public GameObject[] tutorial;
     public MovimientoJugador movimientoJugador;
-    private bool textoactivo = false;
+    private int tutorialActivo = -1;
+    private bool mostrandoTutorial = false;
+
     void Start()
     {
-
+        DesactivarTodosLosTutoriales();
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        // Marcamos un condicionante para asegurarnos de que solo se active cuando el otro objeto tiene la etiqueta Player.
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && tutorialActivo == -1)
         {
-            tutorial.gameObject.SetActive(true);
-            movimientoJugador.haciendoAccion = true;
-            textoactivo = true;
-            Time.timeScale = 0;
+            MostrarSiguienteTutorial();
         }
     }
-    // Update is called once per frame
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && textoactivo)
+        if (mostrandoTutorial && Input.GetKeyDown(KeyCode.Return))
         {
-            textoactivo = false;
-            movimientoJugador.haciendoAccion = false;
-            tutorial.gameObject.SetActive(false);
-            Time.timeScale = 1;
-            this.gameObject.SetActive(false);
+            if (tutorialActivo < tutorial.Length - 1)
+            {
+                MostrarSiguienteTutorial();
+            }
+            else
+            {
+                FinalizarTutorial();
+            }
         }
+    }
+
+    void MostrarSiguienteTutorial()
+    {
+        if (tutorialActivo >= 0)
+        {
+            tutorial[tutorialActivo].SetActive(false);
+        }
+
+        tutorialActivo++;
+        tutorial[tutorialActivo].SetActive(true);
+        mostrandoTutorial = true;
+        movimientoJugador.haciendoAccion = true;
+        Time.timeScale = 0;
+    }
+
+    void DesactivarTodosLosTutoriales()
+    {
+        foreach (GameObject tutorialObj in tutorial)
+        {
+            tutorialObj.SetActive(false);
+        }
+    }
+
+    void FinalizarTutorial()
+    {
+        tutorial[tutorialActivo].SetActive(false);
+        mostrandoTutorial = false;
+        movimientoJugador.haciendoAccion = false;
+        Time.timeScale = 1;
+        gameObject.SetActive(false);
     }
 }
