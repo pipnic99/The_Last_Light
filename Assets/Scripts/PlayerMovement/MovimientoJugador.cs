@@ -35,6 +35,7 @@ public class MovimientoJugador : MonoBehaviour
     private bool yaGiradoDerecha = true;
     bool movimientoAnteriorIzquierda = false;
     bool movimientoAnteriorDerecha = false;
+    public float movimientoHorizontal;
 
     public Vector3 movimiento = new Vector3(0f, 0f, 0f);
     private void RotarIzquierda()
@@ -135,7 +136,7 @@ public class MovimientoJugador : MonoBehaviour
     }
     void Update()
     {
-        float movimientoHorizontal = Input.GetAxis("Horizontal");
+        movimientoHorizontal = Input.GetAxis("Horizontal");
         int movimientoHorizontalint = Mathf.RoundToInt(movimientoHorizontal);
         float movimientoVertical = Input.GetAxis("Vertical");
 
@@ -160,7 +161,6 @@ public class MovimientoJugador : MonoBehaviour
         if (movimientoHorizontal < 0f && !yaGiradoIzquierda && !movimientoAnteriorIzquierda)
         {
             RotarIzquierda();
-            Debug.Log("giro izquierda");
             yaGiradoIzquierda = true;
             movimientoAnteriorIzquierda = true;
             movimientoAnteriorDerecha = false;
@@ -169,7 +169,6 @@ public class MovimientoJugador : MonoBehaviour
         else if (movimientoHorizontal > 0f && !yaGiradoDerecha && !movimientoAnteriorDerecha)
         {
             RotarDerecha();
-            Debug.Log("giro derecha");
             yaGiradoDerecha = true;
             movimientoAnteriorDerecha = true;
             movimientoAnteriorIzquierda = false;

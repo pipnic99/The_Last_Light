@@ -20,7 +20,7 @@ public class PayerDash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !dashCD && moveScript.characterController.isGrounded)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !dashCD && moveScript.characterController.isGrounded && moveScript.movimientoHorizontal != 0)
         {
             if(!moveScript.haciendoAccion)
             {
