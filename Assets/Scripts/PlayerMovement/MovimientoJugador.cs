@@ -213,11 +213,11 @@ public class MovimientoJugador : MonoBehaviour
             movimientoJugadorProfundiad = true;
             if (!escondidoEnPuerta)
             {
-                objetivoPosicion = transform.position + Vector3.forward * (profundiadMovimientoJugador + 7f);
+                objetivoPosicion = transform.position + Vector3.forward * (profundiadMovimientoJugador + 9f);
             }
             else if (escondidoEnPuerta)
             {
-                objetivoPosicion = transform.position + Vector3.forward * (-profundiadMovimientoJugador - 7f);
+                objetivoPosicion = transform.position + Vector3.forward * (-profundiadMovimientoJugador - 9f);
             }
             haciendoAccion = true;
         }
