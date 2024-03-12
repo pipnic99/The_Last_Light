@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public MovimientoJugador movimientoJugador;
     public GameObject[] hudGameObjects;
     public GameObject[] playMenu;
+    public GameObject optionMenu;
     public bool canpause = false;
     // Start is called before the first frame update
 
@@ -58,6 +59,22 @@ public class GameManager : MonoBehaviour
             menu.SetActive(false);
         }
         principioJuego = true;
+    }
+    public void OptionsMainMenu()
+    {
+        optionMenu.SetActive(true);
+        foreach (GameObject menu in playMenu)
+        {
+            menu.SetActive(false);
+        }
+    }
+    public void BackMenu()
+    {
+        foreach (GameObject menu in playMenu)
+        {
+            menu.SetActive(true);
+        }
+        optionMenu.SetActive(false);
     }
     public void Exit()
     {

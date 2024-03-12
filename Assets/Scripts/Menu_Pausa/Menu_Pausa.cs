@@ -5,6 +5,7 @@ using UnityEngine;
 public class Menu_Pausa : MonoBehaviour
 {
     public GameObject objetoMenuPausa;
+    public GameObject objetoOptions;
     public bool pausa = false;
     public GameManager gameManager;
     // Start is called before the first frame update
@@ -17,6 +18,16 @@ public class Menu_Pausa : MonoBehaviour
             objetoMenuPausa.gameObject.SetActive(false);
             pausa = false;
             Time.timeScale = 1;
+    }
+    public void OptionsPauseMenu()
+    {
+        objetoMenuPausa.SetActive(false);
+        objetoOptions.SetActive(true);
+    }
+    public void ExitOptionsPause()
+    {
+        objetoOptions.SetActive(false);
+        objetoMenuPausa.SetActive(true);
     }
     // Update is called once per frame
     void Update()
@@ -32,6 +43,8 @@ public class Menu_Pausa : MonoBehaviour
             else
             {
                 objetoMenuPausa.gameObject.SetActive(false);
+                objetoOptions.SetActive(false);
+                objetoMenuPausa.SetActive(false);
                 pausa = false;
                 Time.timeScale = 1;
             }

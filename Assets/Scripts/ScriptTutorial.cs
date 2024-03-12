@@ -6,6 +6,7 @@ public class ScriptTutorial : MonoBehaviour
 {
     public GameObject[] tutorial;
     public MovimientoJugador movimientoJugador;
+    [SerializeField] GameManager gameManager;
     private int tutorialActivo = -1;
     private bool mostrandoTutorial = false;
 
@@ -48,6 +49,7 @@ public class ScriptTutorial : MonoBehaviour
         tutorial[tutorialActivo].SetActive(true);
         mostrandoTutorial = true;
         movimientoJugador.haciendoAccion = true;
+        gameManager.canpause = false;
         Time.timeScale = 0;
     }
 
@@ -64,6 +66,7 @@ public class ScriptTutorial : MonoBehaviour
         tutorial[tutorialActivo].SetActive(false);
         mostrandoTutorial = false;
         movimientoJugador.haciendoAccion = false;
+        gameManager.canpause = true;
         Time.timeScale = 1;
         gameObject.SetActive(false);
     }
