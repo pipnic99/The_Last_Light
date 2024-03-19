@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class MovimientoJugador : MonoBehaviour
 {
@@ -36,6 +38,7 @@ public class MovimientoJugador : MonoBehaviour
     bool movimientoAnteriorIzquierda = false;
     bool movimientoAnteriorDerecha = false;
     public float movimientoHorizontal;
+    private bool saltoUp = true;
 
     public Vector3 movimiento = new Vector3(0f, 0f, 0f);
     private void RotarIzquierda()
@@ -54,6 +57,28 @@ public class MovimientoJugador : MonoBehaviour
             float tRotacion = Mathf.SmoothStep(0, 1, elapsedTime / 1f);
             // Rotamos el enemigo por valor de 180º en la escala Y asignando el valor de suavizado que hemos creado en la linea anterior.
             transform.eulerAngles = Vector3.Lerp(nuevaRotacion, nuevaRotacion + new Vector3(0f, 180f, 0f), tRotacion);
+        }
+    }
+    private void RotarAccion(float rotacion)
+    {
+        if (yaGiradoIzquierda)
+        {
+            rotacion = rotacion * -1f;
+        }
+        float elapsedTime = 0f;
+        // Nos guardamos la escala actual por si hacemos alguna modificación poder volver a la escala original.
+        Vector3 nuevaEscala = transform.localScale;
+        // Guardamos temporalmente la rotacion de nuestro enemigo.
+        Vector3 nuevaRotacion = transform.eulerAngles;
+        // Creamos un bucle infinito mientras que la rotación no este completa.
+        while (elapsedTime < 1f)
+        {
+            // Aumentamos el valor de elapsedTime en funcion del tiempo que ha transcurrido
+            elapsedTime += Time.deltaTime;
+            // Calcula un valor suavizado para la rotación
+            float tRotacion = Mathf.SmoothStep(0, 1, elapsedTime / 1f);
+            // Rotamos el enemigo por valor de 180º en la escala Y asignando el valor de suavizado que hemos creado en la linea anterior.
+            transform.eulerAngles = Vector3.Lerp(nuevaRotacion, nuevaRotacion + new Vector3(0f, rotacion, 0f), tRotacion);
         }
     }
     private void RotarDerecha()
@@ -81,6 +106,7 @@ public class MovimientoJugador : MonoBehaviour
         posicionZJugador = transform.position.z;
         animator = GetComponent<Animator>();
     }
+
     private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.CompareTag("LadderDown"))
@@ -110,6 +136,11 @@ public class MovimientoJugador : MonoBehaviour
         {
             Debug.Log("Has tocado el laser");
         }
+    }
+    IEnumerator CdSalto()
+    {
+        yield return new WaitForSeconds(2f);
+        saltoUp = true;
     }
     private void OnTriggerExit(Collider collision)
     {
@@ -158,7 +189,7 @@ public class MovimientoJugador : MonoBehaviour
             animator.SetBool("IsIdle", false);
         }
 
-        if (movimientoHorizontal < 0f && !yaGiradoIzquierda && !movimientoAnteriorIzquierda)
+        if (movimientoHorizontal < 0f && !yaGiradoIzquierda && !movimientoAnteriorIzquierda && !haciendoAccion)
         {
             RotarIzquierda();
             yaGiradoIzquierda = true;
@@ -166,7 +197,7 @@ public class MovimientoJugador : MonoBehaviour
             movimientoAnteriorDerecha = false;
             yaGiradoDerecha = false;
         }
-        else if (movimientoHorizontal > 0f && !yaGiradoDerecha && !movimientoAnteriorDerecha)
+        else if (movimientoHorizontal > 0f && !yaGiradoDerecha && !movimientoAnteriorDerecha && !haciendoAccion)
         {
             RotarDerecha();
             yaGiradoDerecha = true;
@@ -183,14 +214,18 @@ public class MovimientoJugador : MonoBehaviour
             movimiento.y = -gravedad * Time.deltaTime;
 
             // Manejar saltos
-            if (Input.GetButtonDown("Jump") && !haciendoAccion)
+            if (Input.GetButtonDown("Jump") && !haciendoAccion && saltoUp)
             {
                 movimiento.y = fuerzaSalto;
+                animator.SetBool("IsJumping", true);
+                saltoUp = false;
+                StartCoroutine(CdSalto());
             }
         }
         else
         {
             movimiento.y -= gravedad * Time.deltaTime;
+            animator.SetBool("IsJumping", false);
         }
 
         // Aplicar movimiento al CharacterController
@@ -200,9 +235,11 @@ public class MovimientoJugador : MonoBehaviour
             objetivoPosicion = transform.position + Vector3.forward * profundiadMovimientoJugador / 2;
             objetivoPosicion.z = PosicionEscalera.z - 1f;
             haciendoAccion = true;
+            RotarAccion(-90f);
         }
         if (puedesBajarEsclareas && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
         {
+            RotarAccion(-90f);
             downLadderPhase = 1;
             objetivoPosicion = transform.position + Vector3.forward * profundiadMovimientoJugador / 2;
             objetivoPosicion.z = posicionBajarEscalera.z - 1f;
@@ -210,13 +247,16 @@ public class MovimientoJugador : MonoBehaviour
         }
         if (puedesEscondertePuerta && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
         {
+            
             movimientoJugadorProfundiad = true;
             if (!escondidoEnPuerta)
             {
+                RotarAccion(-90f);
                 objetivoPosicion = transform.position + Vector3.forward * (profundiadMovimientoJugador + 9f);
             }
             else if (escondidoEnPuerta)
             {
+                RotarAccion(90);
                 objetivoPosicion = transform.position + Vector3.forward * (-profundiadMovimientoJugador - 9f);
             }
             haciendoAccion = true;
@@ -226,6 +266,7 @@ public class MovimientoJugador : MonoBehaviour
 
             if (!escondidoEnPuerta)
             {
+                animator.SetBool("IsWalking", true);
                 Vector3 movimientoProfundidad = Vector3.forward * velocidad * Time.deltaTime;
                 if (transform.position.z < objetivoPosicion.z)
                 {
@@ -233,6 +274,7 @@ public class MovimientoJugador : MonoBehaviour
                 }
                 else
                 {
+                    RotarAccion(90f);
                     movimientoJugadorProfundiad = false;
                     escondidoEnPuerta = true;
                     haciendoAccion = false;
@@ -240,6 +282,7 @@ public class MovimientoJugador : MonoBehaviour
             }
             else if (escondidoEnPuerta)
             {
+                animator.SetBool("IsWalking", true);
                 Vector3 movimientoProfundidad = Vector3.forward * (-velocidad) * Time.deltaTime;
                 if (transform.position.z > objetivoPosicion.z)
                 {
@@ -247,6 +290,7 @@ public class MovimientoJugador : MonoBehaviour
                 }
                 else
                 {
+                    RotarAccion(-90f);
                     movimientoJugadorProfundiad = false;
                     escondidoEnPuerta = false;
                     haciendoAccion = false;
@@ -261,6 +305,7 @@ public class MovimientoJugador : MonoBehaviour
         switch (upLadderPhase)
         {
             case 1:
+                animator.SetBool("IsWalking", true);
                 Vector3 movimientoPrincipioProfundidad = Vector3.forward * velocidad * Time.deltaTime;
                 if (transform.position.z < objetivoPosicion.z && !movimientoFinalEscalera)
                 {
@@ -273,19 +318,24 @@ public class MovimientoJugador : MonoBehaviour
                 break;
             case 2:
                 Vector3 movimientoVerticalJugador = Vector3.up * velocidad * Time.deltaTime;
+                animator.SetBool("SubirEscalera", true);
                 if (!finSubirEscalera)
                 {
                     characterController.Move(movimientoVerticalJugador);
+
                 }
                 else
                 {
                     upLadderPhase = 4;
+                    animator.SetBool("SubirEscalera", false);
 
                 }
                 break;
             case 4:
                 if (!movimientoFinalEscalera3)
                 {
+                    animator.SetBool("IsWalking", true);
+                    RotarAccion(180f);
                     objetivoPosicion = new Vector3(transform.position.x, transform.position.y, -1.23f); // Mover 2 unidades hacia adelante en el eje Z
                     movimientoFinalEscalera3 = true;
                 }
@@ -300,7 +350,8 @@ public class MovimientoJugador : MonoBehaviour
                 }
                 break;
             case 5:
-
+                animator.SetBool("IsIdle", true);
+                RotarAccion(-90f);
                 transform.position = new Vector3(transform.position.z, transform.position.y, -1.23f);
                 upLadderPhase = 0;
                 movimientoFinalEscalera = false;
@@ -315,6 +366,7 @@ public class MovimientoJugador : MonoBehaviour
         switch (downLadderPhase)
         {
             case 1:
+                animator.SetBool("IsWalking", true);
                 Vector3 movimientoPrincipioProfundidad = Vector3.forward * velocidad * Time.deltaTime;
                 if (transform.position.z < objetivoPosicion.z && !movimientoFinalEscalera)
                 {
@@ -326,6 +378,7 @@ public class MovimientoJugador : MonoBehaviour
                 }
                 break;
             case 2:
+                animator.SetBool("BajarEscalera", true);
                 Vector3 movimientoVerticalJugador = Vector3.down * velocidad * Time.deltaTime;
                 if (!finBajarEscalera)
                 {
@@ -334,14 +387,17 @@ public class MovimientoJugador : MonoBehaviour
                 else
                 {
                     downLadderPhase = 3;
+                    animator.SetBool("BajarEscalera", false);
                 }
                 break;
             case 3:
                 if (!movimientoFinalEscalera3)
                 {
+                    RotarAccion(180f);
                     objetivoPosicion = new Vector3(transform.position.x, transform.position.y, -1.23f); // Mover 2 unidades hacia adelante en el eje Z
                     movimientoFinalEscalera3 = true;
                 }
+                animator.SetBool("IsWalking", true);
                 Vector3 movimientoFinalProfundidad = Vector3.back * velocidad * Time.deltaTime;
                 if (transform.position.z > objetivoPosicion.z)
                 {
@@ -353,7 +409,7 @@ public class MovimientoJugador : MonoBehaviour
                 }
                 break;
             case 4:
-
+                RotarAccion(-90f);
                 transform.position = new Vector3(transform.position.z, transform.position.y, -1.23f);
                 downLadderPhase = 0;
                 movimientoFinalEscalera = false;
