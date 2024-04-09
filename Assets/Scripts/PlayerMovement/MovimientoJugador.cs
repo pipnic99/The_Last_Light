@@ -267,6 +267,7 @@ public class MovimientoJugador : MonoBehaviour
             if (!escondidoEnPuerta)
             {
                 animator.SetBool("IsWalking", true);
+                velocidad = 10;
                 Vector3 movimientoProfundidad = Vector3.forward * velocidad * Time.deltaTime;
                 if (transform.position.z < objetivoPosicion.z)
                 {
@@ -290,6 +291,7 @@ public class MovimientoJugador : MonoBehaviour
                 }
                 else
                 {
+                    velocidad = 5;
                     RotarAccion(-90f);
                     movimientoJugadorProfundiad = false;
                     escondidoEnPuerta = false;
