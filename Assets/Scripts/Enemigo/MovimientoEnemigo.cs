@@ -6,6 +6,8 @@ public class MovimientoEnemigo : MonoBehaviour
     public float velocidad = 2f;  // Velocidad de movimiento del enemigo
     public float distancia = 5f;  // Distancia que recorrerá el enemigo
     public float tiempoEspera = 2f; // Tiempo de espera en cada esquina del recorrido
+    public GameManager gameManager;
+    public Animator animator;
 
     private Vector3 puntoInicial;  // Punto de inicio del movimiento
     private Vector3 puntoFinal;    // Punto final del movimiento
@@ -18,19 +20,20 @@ public class MovimientoEnemigo : MonoBehaviour
         puntoFinal = puntoInicial + Vector3.right * distancia;
         // Iniciamos un metodo coroutine para poder pausarlo y retomarlo a nuestro gusto.
         StartCoroutine(MoverEnemigo());
+        animator = GetComponent<Animator>();
     }
 
     // Ejecutamos la funcion coroutine que hemos declarado anteriormente.
     IEnumerator MoverEnemigo()
     {
         // Creamos un bucle infinito.
-        while (true)
+        while (gameManager.IsAlive)
         {
             // Mueve al enemigo de un lado a otro en un bucle infinito.
             // Creamos un float denominado t para realizar un seguimiento del progreso del movimiento entre los puntos inicial y final.
             float t = 0f;
             // Creamos un bucle que se ejecute mientras que el objetivo no ha llegado a su destino.
-            while (t < 1f)
+            while (t < 1f && gameManager.IsAlive)
             {
                 // Aumentamos el valor t basandonos en el tiempo transcurrido, esto lo hacemos para suavizar el movimiento.
                 t += Time.deltaTime * velocidad / distancia;
@@ -50,7 +53,7 @@ public class MovimientoEnemigo : MonoBehaviour
             // Guardamos temporalmente la rotacion de nuestro enemigo.
             Vector3 nuevaRotacion = transform.eulerAngles;
             // Creamos un bucle infinito mientras que la rotación no este completa.
-            while (elapsedTime < 1f)
+            while (elapsedTime < 1f && gameManager.IsAlive)
             {
                 // Aumentamos el valor de elapsedTime en funcion del tiempo que ha transcurrido
                 elapsedTime += Time.deltaTime;

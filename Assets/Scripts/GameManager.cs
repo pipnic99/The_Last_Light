@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public GameObject[] playMenu;
     public GameObject optionMenu;
     public bool canpause = false;
+    public bool IsAlive = true;
+    public bool blood = false;
+    public GameObject fleshImpact;
+    private bool done = false;
     // Start is called before the first frame update
 
     // Creamos una corutina para esperar 1s despues de pulsar enter y que nos deje mover pasado el segundo.
@@ -46,6 +50,15 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(Esperar1S());
             }
+        }
+        if(!IsAlive)
+        {
+            if (!done && blood == true)
+            {
+                fleshImpact.SetActive(true);
+                done = true;
+            }
+            
         }
     }
     public void Play()

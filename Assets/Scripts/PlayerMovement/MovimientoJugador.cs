@@ -14,6 +14,7 @@ public class MovimientoJugador : MonoBehaviour
     public float distanciaSubir = 6f;
     public float profundiadMovimientoJugador = 1f;
     public bool haciendoAccion = true;
+    public GameManager gameManager;
     // Creamos todas las booleanas que necesitaremos para las condiciones.
     private int upLadderPhase = 0;
     private int downLadderPhase = 0;
@@ -167,268 +168,275 @@ public class MovimientoJugador : MonoBehaviour
     }
     void Update()
     {
-        movimientoHorizontal = Input.GetAxis("Horizontal");
-        int movimientoHorizontalint = Mathf.RoundToInt(movimientoHorizontal);
-        float movimientoVertical = Input.GetAxis("Vertical");
+        if(gameManager.IsAlive)
+        {
+            movimientoHorizontal = Input.GetAxis("Horizontal");
+            int movimientoHorizontalint = Mathf.RoundToInt(movimientoHorizontal);
+            float movimientoVertical = Input.GetAxis("Vertical");
 
-        if (Mathf.Abs(movimientoHorizontal) > 0 && !haciendoAccion)
-        {
-            animator.SetBool("IsWalking", true);
-        }
-        else
-        {
-            animator.SetBool("IsWalking", false);
-        }
-
-        if (Mathf.Abs(movimientoHorizontal) == 0 && movimientoVertical < 0.5 && !haciendoAccion)
-        {
-            animator.SetBool("IsIdle", true);
-        }
-        else
-        {
-            animator.SetBool("IsIdle", false);
-        }
-
-        if (movimientoHorizontal < 0f && !yaGiradoIzquierda && !movimientoAnteriorIzquierda && !haciendoAccion)
-        {
-            RotarIzquierda();
-            yaGiradoIzquierda = true;
-            movimientoAnteriorIzquierda = true;
-            movimientoAnteriorDerecha = false;
-            yaGiradoDerecha = false;
-        }
-        else if (movimientoHorizontal > 0f && !yaGiradoDerecha && !movimientoAnteriorDerecha && !haciendoAccion)
-        {
-            RotarDerecha();
-            yaGiradoDerecha = true;
-            movimientoAnteriorDerecha = true;
-            movimientoAnteriorIzquierda = false;
-            yaGiradoIzquierda = false;
-        }
-        // Calcular movimiento del jugador
-        Vector3 direccion = transform.right * movimientoVertical + transform.forward * Mathf.Abs(movimientoHorizontal);
-        movimiento.x = direccion.x * velocidad;
-        // Aplicar gravedad
-        if (characterController.isGrounded)
-        {
-            movimiento.y = -gravedad * Time.deltaTime;
-
-            // Manejar saltos
-            if (Input.GetButtonDown("Jump") && !haciendoAccion && saltoUp)
+            if (Mathf.Abs(movimientoHorizontal) > 0 && !haciendoAccion)
             {
-                movimiento.y = fuerzaSalto;
-                animator.SetBool("IsJumping", true);
-                saltoUp = false;
-                StartCoroutine(CdSalto());
+                animator.SetBool("IsWalking", true);
             }
-        }
-        else
-        {
-            movimiento.y -= gravedad * Time.deltaTime;
-            animator.SetBool("IsJumping", false);
-        }
+            else
+            {
+                animator.SetBool("IsWalking", false);
+            }
 
-        // Aplicar movimiento al CharacterController
-        if (subirEscalera && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
-        {
-            upLadderPhase = 1;
-            objetivoPosicion = transform.position + Vector3.forward * profundiadMovimientoJugador / 2;
-            objetivoPosicion.z = PosicionEscalera.z - 1f;
-            haciendoAccion = true;
-            RotarAccion(-90f);
-        }
-        if (puedesBajarEsclareas && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
-        {
-            RotarAccion(-90f);
-            downLadderPhase = 1;
-            objetivoPosicion = transform.position + Vector3.forward * profundiadMovimientoJugador / 2;
-            objetivoPosicion.z = posicionBajarEscalera.z - 1f;
-            haciendoAccion = true;
-        }
-        if (puedesEscondertePuerta && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
-        {
-            
-            movimientoJugadorProfundiad = true;
-            if (!escondidoEnPuerta)
+            if (Mathf.Abs(movimientoHorizontal) == 0 && movimientoVertical < 0.5 && !haciendoAccion)
+            {
+                animator.SetBool("IsIdle", true);
+            }
+            else
+            {
+                animator.SetBool("IsIdle", false);
+            }
+
+            if (movimientoHorizontal < 0f && !yaGiradoIzquierda && !movimientoAnteriorIzquierda && !haciendoAccion)
+            {
+                RotarIzquierda();
+                yaGiradoIzquierda = true;
+                movimientoAnteriorIzquierda = true;
+                movimientoAnteriorDerecha = false;
+                yaGiradoDerecha = false;
+            }
+            else if (movimientoHorizontal > 0f && !yaGiradoDerecha && !movimientoAnteriorDerecha && !haciendoAccion)
+            {
+                RotarDerecha();
+                yaGiradoDerecha = true;
+                movimientoAnteriorDerecha = true;
+                movimientoAnteriorIzquierda = false;
+                yaGiradoIzquierda = false;
+            }
+            // Calcular movimiento del jugador
+            Vector3 direccion = transform.right * movimientoVertical + transform.forward * Mathf.Abs(movimientoHorizontal);
+            movimiento.x = direccion.x * velocidad;
+            // Aplicar gravedad
+            if (characterController.isGrounded)
+            {
+                movimiento.y = -gravedad * Time.deltaTime;
+
+                // Manejar saltos
+                if (Input.GetButtonDown("Jump") && !haciendoAccion && saltoUp)
+                {
+                    movimiento.y = fuerzaSalto;
+                    animator.SetBool("IsJumping", true);
+                    saltoUp = false;
+                    StartCoroutine(CdSalto());
+                }
+            }
+            else
+            {
+                movimiento.y -= gravedad * Time.deltaTime;
+                animator.SetBool("IsJumping", false);
+            }
+
+            // Aplicar movimiento al CharacterController
+            if (subirEscalera && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
+            {
+                upLadderPhase = 1;
+                objetivoPosicion = transform.position + Vector3.forward * profundiadMovimientoJugador / 2;
+                objetivoPosicion.z = PosicionEscalera.z - 1f;
+                haciendoAccion = true;
+                RotarAccion(-90f);
+            }
+            if (puedesBajarEsclareas && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
             {
                 RotarAccion(-90f);
-                objetivoPosicion = transform.position + Vector3.forward * (profundiadMovimientoJugador + 9f);
+                downLadderPhase = 1;
+                objetivoPosicion = transform.position + Vector3.forward * profundiadMovimientoJugador / 2;
+                objetivoPosicion.z = posicionBajarEscalera.z - 1f;
+                haciendoAccion = true;
             }
-            else if (escondidoEnPuerta)
+            if (puedesEscondertePuerta && Input.GetKeyDown(KeyCode.F) && !haciendoAccion)
             {
-                RotarAccion(90);
-                objetivoPosicion = transform.position + Vector3.forward * (-profundiadMovimientoJugador - 9f);
-            }
-            haciendoAccion = true;
-        }
-        if (movimientoJugadorProfundiad)
-        {
 
-            if (!escondidoEnPuerta)
-            {
-                animator.SetBool("IsWalking", true);
-                velocidad = 10;
-                Vector3 movimientoProfundidad = Vector3.forward * velocidad * Time.deltaTime;
-                if (transform.position.z < objetivoPosicion.z)
+                movimientoJugadorProfundiad = true;
+                if (!escondidoEnPuerta)
                 {
-                    characterController.Move(movimientoProfundidad);
-                }
-                else
-                {
-                    RotarAccion(90f);
-                    movimientoJugadorProfundiad = false;
-                    escondidoEnPuerta = true;
-                    haciendoAccion = false;
-                }
-            }
-            else if (escondidoEnPuerta)
-            {
-                animator.SetBool("IsWalking", true);
-                Vector3 movimientoProfundidad = Vector3.forward * (-velocidad) * Time.deltaTime;
-                if (transform.position.z > objetivoPosicion.z)
-                {
-                    characterController.Move(movimientoProfundidad);
-                }
-                else
-                {
-                    velocidad = 5;
                     RotarAccion(-90f);
-                    movimientoJugadorProfundiad = false;
-                    escondidoEnPuerta = false;
-                    haciendoAccion = false;
+                    objetivoPosicion = transform.position + Vector3.forward * (profundiadMovimientoJugador + 9f);
                 }
+                else if (escondidoEnPuerta)
+                {
+                    RotarAccion(90);
+                    objetivoPosicion = transform.position + Vector3.forward * (-profundiadMovimientoJugador - 9f);
+                }
+                haciendoAccion = true;
             }
-        }
+            if (movimientoJugadorProfundiad)
+            {
 
-
-        //En este trozo de codigo calcularemos la mitad del recorrido deseado por nosotros y primero nos moveremos hacia la escalera,
-        // luego subiremos por ella y cuando acabe nos moveremos hacia el fondo.
-
-        switch (upLadderPhase)
-        {
-            case 1:
-                animator.SetBool("IsWalking", true);
-                Vector3 movimientoPrincipioProfundidad = Vector3.forward * velocidad * Time.deltaTime;
-                if (transform.position.z < objetivoPosicion.z && !movimientoFinalEscalera)
-                {
-                    characterController.Move(movimientoPrincipioProfundidad);
-                }
-                else
-                {
-                    upLadderPhase = 2;
-                }
-                break;
-            case 2:
-                Vector3 movimientoVerticalJugador = Vector3.up * velocidad * Time.deltaTime;
-                animator.SetBool("SubirEscalera", true);
-                if (!finSubirEscalera)
-                {
-                    characterController.Move(movimientoVerticalJugador);
-
-                }
-                else
-                {
-                    upLadderPhase = 4;
-                    animator.SetBool("SubirEscalera", false);
-
-                }
-                break;
-            case 4:
-                if (!movimientoFinalEscalera3)
+                if (!escondidoEnPuerta)
                 {
                     animator.SetBool("IsWalking", true);
-                    RotarAccion(180f);
-                    objetivoPosicion = new Vector3(transform.position.x, transform.position.y, -1.23f); // Mover 2 unidades hacia adelante en el eje Z
-                    movimientoFinalEscalera3 = true;
-                }
-                Vector3 movimientoFinalProfundidad = Vector3.back * velocidad * Time.deltaTime;
-                if (transform.position.z > objetivoPosicion.z)
-                {
-                    characterController.Move(movimientoFinalProfundidad);
+                    velocidad = 10;
+                    Vector3 movimientoProfundidad = Vector3.forward * velocidad * Time.deltaTime;
                     if (transform.position.z < objetivoPosicion.z)
                     {
-                        upLadderPhase = 5;
+                        characterController.Move(movimientoProfundidad);
                     }
-                }
-                break;
-            case 5:
-                animator.SetBool("IsIdle", true);
-                RotarAccion(-90f);
-                transform.position = new Vector3(transform.position.z, transform.position.y, -1.23f);
-                upLadderPhase = 0;
-                movimientoFinalEscalera = false;
-                //movimientoFinalEscalera2 = false;
-                movimientoFinalEscalera3 = false;
-                haciendoAccion = false;
-                break;
-            default:
-                break;
-        }
-
-        switch (downLadderPhase)
-        {
-            case 1:
-                animator.SetBool("IsWalking", true);
-                Vector3 movimientoPrincipioProfundidad = Vector3.forward * velocidad * Time.deltaTime;
-                if (transform.position.z < objetivoPosicion.z && !movimientoFinalEscalera)
-                {
-                    characterController.Move(movimientoPrincipioProfundidad);
-                }
-                else
-                {
-                    downLadderPhase = 2;
-                }
-                break;
-            case 2:
-                animator.SetBool("BajarEscalera", true);
-                Vector3 movimientoVerticalJugador = Vector3.down * velocidad * Time.deltaTime;
-                if (!finBajarEscalera)
-                {
-                    characterController.Move(movimientoVerticalJugador);
-                }
-                else
-                {
-                    downLadderPhase = 3;
-                    animator.SetBool("BajarEscalera", false);
-                }
-                break;
-            case 3:
-                if (!movimientoFinalEscalera3)
-                {
-                    RotarAccion(180f);
-                    objetivoPosicion = new Vector3(transform.position.x, transform.position.y, -1.23f); // Mover 2 unidades hacia adelante en el eje Z
-                    movimientoFinalEscalera3 = true;
-                }
-                animator.SetBool("IsWalking", true);
-                Vector3 movimientoFinalProfundidad = Vector3.back * velocidad * Time.deltaTime;
-                if (transform.position.z > objetivoPosicion.z)
-                {
-                    characterController.Move(movimientoFinalProfundidad);
-                    if (transform.position.z < objetivoPosicion.z)
+                    else
                     {
-                        downLadderPhase = 4;
+                        RotarAccion(90f);
+                        movimientoJugadorProfundiad = false;
+                        escondidoEnPuerta = true;
+                        haciendoAccion = false;
                     }
                 }
-                break;
-            case 4:
-                RotarAccion(-90f);
-                transform.position = new Vector3(transform.position.z, transform.position.y, -1.23f);
-                downLadderPhase = 0;
-                movimientoFinalEscalera = false;
-                //movimientoFinalEscalera2 = false;
-                movimientoFinalEscalera3 = false;
-                haciendoAccion = false;
-                break;
-            default:
-                break;
-        }
-        if (!haciendoAccion && !escondidoEnPuerta)
-        {
-            characterController.Move(movimiento * Time.deltaTime);
-            if (transform.position.z != -1.23f && !escondidoEnPuerta)
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -1.23f);
+                else if (escondidoEnPuerta)
+                {
+                    animator.SetBool("IsWalking", true);
+                    Vector3 movimientoProfundidad = Vector3.forward * (-velocidad) * Time.deltaTime;
+                    if (transform.position.z > objetivoPosicion.z)
+                    {
+                        characterController.Move(movimientoProfundidad);
+                    }
+                    else
+                    {
+                        velocidad = 5;
+                        RotarAccion(-90f);
+                        movimientoJugadorProfundiad = false;
+                        escondidoEnPuerta = false;
+                        haciendoAccion = false;
+                    }
+                }
             }
+
+
+            //En este trozo de codigo calcularemos la mitad del recorrido deseado por nosotros y primero nos moveremos hacia la escalera,
+            // luego subiremos por ella y cuando acabe nos moveremos hacia el fondo.
+
+            switch (upLadderPhase)
+            {
+                case 1:
+                    animator.SetBool("IsWalking", true);
+                    Vector3 movimientoPrincipioProfundidad = Vector3.forward * velocidad * Time.deltaTime;
+                    if (transform.position.z < objetivoPosicion.z && !movimientoFinalEscalera)
+                    {
+                        characterController.Move(movimientoPrincipioProfundidad);
+                    }
+                    else
+                    {
+                        upLadderPhase = 2;
+                    }
+                    break;
+                case 2:
+                    Vector3 movimientoVerticalJugador = Vector3.up * velocidad * Time.deltaTime;
+                    animator.SetBool("SubirEscalera", true);
+                    if (!finSubirEscalera)
+                    {
+                        characterController.Move(movimientoVerticalJugador);
+
+                    }
+                    else
+                    {
+                        upLadderPhase = 4;
+                        animator.SetBool("SubirEscalera", false);
+
+                    }
+                    break;
+                case 4:
+                    if (!movimientoFinalEscalera3)
+                    {
+                        animator.SetBool("IsWalking", true);
+                        RotarAccion(180f);
+                        objetivoPosicion = new Vector3(transform.position.x, transform.position.y, -1.23f); // Mover 2 unidades hacia adelante en el eje Z
+                        movimientoFinalEscalera3 = true;
+                    }
+                    Vector3 movimientoFinalProfundidad = Vector3.back * velocidad * Time.deltaTime;
+                    if (transform.position.z > objetivoPosicion.z)
+                    {
+                        characterController.Move(movimientoFinalProfundidad);
+                        if (transform.position.z < objetivoPosicion.z)
+                        {
+                            upLadderPhase = 5;
+                        }
+                    }
+                    break;
+                case 5:
+                    animator.SetBool("IsIdle", true);
+                    RotarAccion(-90f);
+                    transform.position = new Vector3(transform.position.z, transform.position.y, -1.23f);
+                    upLadderPhase = 0;
+                    movimientoFinalEscalera = false;
+                    //movimientoFinalEscalera2 = false;
+                    movimientoFinalEscalera3 = false;
+                    haciendoAccion = false;
+                    break;
+                default:
+                    break;
+            }
+
+            switch (downLadderPhase)
+            {
+                case 1:
+                    animator.SetBool("IsWalking", true);
+                    Vector3 movimientoPrincipioProfundidad = Vector3.forward * velocidad * Time.deltaTime;
+                    if (transform.position.z < objetivoPosicion.z && !movimientoFinalEscalera)
+                    {
+                        characterController.Move(movimientoPrincipioProfundidad);
+                    }
+                    else
+                    {
+                        downLadderPhase = 2;
+                    }
+                    break;
+                case 2:
+                    animator.SetBool("BajarEscalera", true);
+                    Vector3 movimientoVerticalJugador = Vector3.down * velocidad * Time.deltaTime;
+                    if (!finBajarEscalera)
+                    {
+                        characterController.Move(movimientoVerticalJugador);
+                    }
+                    else
+                    {
+                        downLadderPhase = 3;
+                        animator.SetBool("BajarEscalera", false);
+                    }
+                    break;
+                case 3:
+                    if (!movimientoFinalEscalera3)
+                    {
+                        RotarAccion(180f);
+                        objetivoPosicion = new Vector3(transform.position.x, transform.position.y, -1.23f); // Mover 2 unidades hacia adelante en el eje Z
+                        movimientoFinalEscalera3 = true;
+                    }
+                    animator.SetBool("IsWalking", true);
+                    Vector3 movimientoFinalProfundidad = Vector3.back * velocidad * Time.deltaTime;
+                    if (transform.position.z > objetivoPosicion.z)
+                    {
+                        characterController.Move(movimientoFinalProfundidad);
+                        if (transform.position.z < objetivoPosicion.z)
+                        {
+                            downLadderPhase = 4;
+                        }
+                    }
+                    break;
+                case 4:
+                    RotarAccion(-90f);
+                    transform.position = new Vector3(transform.position.z, transform.position.y, -1.23f);
+                    downLadderPhase = 0;
+                    movimientoFinalEscalera = false;
+                    //movimientoFinalEscalera2 = false;
+                    movimientoFinalEscalera3 = false;
+                    haciendoAccion = false;
+                    break;
+                default:
+                    break;
+            }
+            if (!haciendoAccion && !escondidoEnPuerta)
+            {
+                characterController.Move(movimiento * Time.deltaTime);
+                if (transform.position.z != -1.23f && !escondidoEnPuerta)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, -1.23f);
+                }
+            }
+        }
+        else
+        {
+            animator.SetBool("IsDeath", true);
         }
     }
 }
