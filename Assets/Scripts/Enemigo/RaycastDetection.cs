@@ -6,10 +6,12 @@ public class RaycastDetection : MonoBehaviour
 {
     public float raycastDistance = 10f;
     public float raycastHeight = 3f;
+    public bool done = false;
     private Vector3 startPosition;
     public GameManager gameManager;
     public Animator animator;
     public GameObject muzleFlash;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +30,12 @@ public class RaycastDetection : MonoBehaviour
             {
                 gameManager.IsAlive = false;
                 animator.SetBool("Shoot", true);
-                if (animator.GetFloat("ShotTiming") > 0.3)
+                if (animator.GetFloat("ShotTiming") > 0.3 && !done)
                 {
                     gameManager.blood = true;
+                    audioSource.Play();
                     muzleFlash.SetActive(true);
+                    done = true;
                 }
             }
         }

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject optionMenu;
     public bool canpause = false;
     public bool IsAlive = true;
+    public AudioSource audioSource;
     public bool blood = false;
     public GameObject fleshImpact;
     private bool done = false;
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
             if (!done && blood == true)
             {
                 fleshImpact.SetActive(true);
+                audioSource.Play();
                 done = true;
             }
             

@@ -29,6 +29,7 @@ public class MovimientoEnemigo : MonoBehaviour
         // Creamos un bucle infinito.
         while (gameManager.IsAlive)
         {
+            animator.SetBool("IsWalking", true);
             // Mueve al enemigo de un lado a otro en un bucle infinito.
             // Creamos un float denominado t para realizar un seguimiento del progreso del movimiento entre los puntos inicial y final.
             float t = 0f;
@@ -42,9 +43,11 @@ public class MovimientoEnemigo : MonoBehaviour
                 // Pasa la funcion coroutine hasta el proximo frame.
                 yield return null;
             }
-
+            animator.SetBool("IsIdle", true);
+            animator.SetBool("IsWalking", false);
             // Cuando el enemigo llega a su destino sale del bucle anterior y espera la mitad del tiempo deseado.
             yield return new WaitForSeconds(tiempoEspera / 2);
+            
             // Gira 180 grados.
             // Creamos una variable para hacer un seguimiento de si esta completa la rotación.
             float elapsedTime = 0f;
@@ -67,7 +70,8 @@ public class MovimientoEnemigo : MonoBehaviour
 
             // Hacemos que el enemigo espere el valor introducido dividido entre 2.
             yield return new WaitForSeconds(tiempoEspera / 2);
-
+            animator.SetBool("IsWalking", true);
+            animator.SetBool("IsIdle", false);
             // Cambiamos las direcciones
             // Creamos un vector3 y guardamos el valor de punto inicial
             Vector3 temp = puntoInicial;

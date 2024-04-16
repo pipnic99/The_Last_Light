@@ -40,6 +40,10 @@ public class MovimientoJugador : MonoBehaviour
     bool movimientoAnteriorDerecha = false;
     public float movimientoHorizontal;
     private bool saltoUp = true;
+    private bool step1 = true;
+    private bool step2 = false;
+    public AudioClip[] steps;
+    private AudioSource audioSource;
 
     public Vector3 movimiento = new Vector3(0f, 0f, 0f);
     private void RotarIzquierda()
@@ -106,6 +110,7 @@ public class MovimientoJugador : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         posicionZJugador = transform.position.z;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerStay(Collider collision)
@@ -166,6 +171,16 @@ public class MovimientoJugador : MonoBehaviour
             subirEscalera = false;
         }
     }
+    IEnumerator PlaySecondStepAfterFirst()
+    {
+        yield return new WaitForSeconds(audioSource.clip.length); // Wait for the first step to finish playing
+        step2 = false; // Reset the flag for the second step
+    }
+    IEnumerator PlayFirstStepAfterSecond()
+    {
+        yield return new WaitForSeconds(audioSource.clip.length); // Wait for the second step to finish playing
+        step1 = false; // Reset the flag for the first step
+    }
     void Update()
     {
         if(gameManager.IsAlive)
@@ -174,13 +189,31 @@ public class MovimientoJugador : MonoBehaviour
             int movimientoHorizontalint = Mathf.RoundToInt(movimientoHorizontal);
             float movimientoVertical = Input.GetAxis("Vertical");
 
-            if (Mathf.Abs(movimientoHorizontal) > 0 && !haciendoAccion)
+            if (Mathf.Abs(movimientoHorizontal) > 0 && !haciendoAccion )
             {
                 animator.SetBool("IsWalking", true);
+                Debug.Log(animator.GetFloat("Steps"));
+                if (animator.GetFloat("Steps") > 0.1 && animator.GetFloat("Steps") < 1.1 && !step1)
+                {
+                    audioSource.clip = steps[0]; 
+                    audioSource.Play();
+                    step1 = true;
+                    StartCoroutine(PlaySecondStepAfterFirst());
+                }
+                else if(animator.GetFloat("Steps") > 1.1 && animator.GetFloat("Steps") < 2.2 && !step2)
+                {
+                    audioSource.clip = steps[1];
+                    audioSource.Play();
+                    step2 = true;
+                    StartCoroutine(PlayFirstStepAfterSecond());
+                }
             }
             else
             {
                 animator.SetBool("IsWalking", false);
+                audioSource.Stop();
+                step1 = false;
+                step2 = false;
             }
 
             if (Mathf.Abs(movimientoHorizontal) == 0 && movimientoVertical < 0.5 && !haciendoAccion)
