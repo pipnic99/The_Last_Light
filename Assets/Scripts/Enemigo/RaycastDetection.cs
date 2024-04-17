@@ -24,13 +24,13 @@ public class RaycastDetection : MonoBehaviour
         startPosition = this.transform.position;
         startPosition.y += raycastHeight;
         RaycastHit hit;
-        if(Physics.Raycast(startPosition, transform.forward, out hit, raycastDistance))
+        if(Physics.Raycast(startPosition, transform.forward, out hit, raycastDistance, 1 << 8))
         {
             if (hit.collider.CompareTag("Player"))
             {
                 gameManager.IsAlive = false;
                 animator.SetBool("Shoot", true);
-                if (animator.GetFloat("ShotTiming") > 0.3 && !done)
+                if (animator.GetFloat("ShotTiming") != 0 && !done)
                 {
                     gameManager.blood = true;
                     audioSource.Play();

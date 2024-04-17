@@ -192,7 +192,6 @@ public class MovimientoJugador : MonoBehaviour
             if (Mathf.Abs(movimientoHorizontal) > 0 && !haciendoAccion )
             {
                 animator.SetBool("IsWalking", true);
-                Debug.Log(animator.GetFloat("Steps"));
                 if (animator.GetFloat("Steps") > 0.1 && animator.GetFloat("Steps") < 1.1 && !step1)
                 {
                     audioSource.clip = steps[0]; 
