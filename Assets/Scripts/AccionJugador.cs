@@ -9,13 +9,23 @@ public class AccionJugador : MonoBehaviour
     public bool laserActivo = true;
     public bool puedesmatar = false;
     public bool puedesPulsarBoton = false;
+    private GameObject actualEnemy;
+    private MovimientoEnemigo movimientoEnemigo;
+    private Rotacion_enemigo_estatico rotacion_Enemigo_Estatico;
+    private RaycastDetection raycastDetection;
     private Transform transformBoton;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
 
     }
+    IEnumerator Waitfor10Seconds()
+    {
+        yield return new WaitForSeconds(10);
+        actualEnemy.gameObject.SetActive(false);
 
+    }
     // Update is called once per frame
     void Update()
     {
@@ -50,9 +60,29 @@ public class AccionJugador : MonoBehaviour
             puedesmatar = true;
             if (matar)
             {
-                collision.gameObject.SetActive(false);
+                if(collision.gameObject.GetComponent<MovimientoEnemigo>() != null)
+                {
+                    movimientoEnemigo = collision.gameObject.GetComponent<MovimientoEnemigo>();
+                    movimientoEnemigo.enemyDead = true;
+                }
+                else if (collision.gameObject.GetComponent<Rotacion_enemigo_estatico>() != null)
+                {
+                    rotacion_Enemigo_Estatico = collision.gameObject.GetComponent<Rotacion_enemigo_estatico>();
+                    rotacion_Enemigo_Estatico.enemyDead = true;
+                }
+                BoxCollider[] colliders = collision.gameObject.GetComponents<BoxCollider>();
+                foreach(BoxCollider collider in colliders)
+                {
+                    collider.enabled = false;
+                }
+                raycastDetection = collision.gameObject.GetComponent<RaycastDetection>();
+                raycastDetection.active = false;
+                
+                actualEnemy = collision.gameObject;
+                StartCoroutine(Waitfor10Seconds());
                 puedesmatar = false;
                 matar = false;
+                animator.SetTrigger("Kill");
             }
             
         }

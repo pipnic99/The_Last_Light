@@ -6,18 +6,25 @@ public class Rotacion_enemigo_estatico : MonoBehaviour
 {
     public float tiempoEspera = 2f; // Tiempo de espera en cada esquina del recorrido
     public Animator animator;
+    public bool enemyDead = false;
     void Start()
     {
 
         animator = GetComponent<Animator>();
         StartCoroutine(RotarEnemigo());
     }
-
+    private void Update()
+    {
+        if(enemyDead)
+        {
+            animator.SetBool("IsDead", true);
+        }
+    }
     // Ejecutamos la funcion coroutine que hemos declarado anteriormente.
     IEnumerator RotarEnemigo()
     {
         // Creamos un bucle infinito.
-        while (true)
+        while (!enemyDead)
         {
             animator.SetBool("IsIdle", true);
             // Cuando el enemigo llega a su destino sale del bucle anterior y espera la mitad del tiempo deseado.
@@ -30,7 +37,7 @@ public class Rotacion_enemigo_estatico : MonoBehaviour
             // Guardamos temporalmente la rotacion de nuestro enemigo.
             Vector3 nuevaRotacion = transform.eulerAngles;
             // Creamos un bucle infinito mientras que la rotación no este completa.
-            while (elapsedTime < 1f)
+            while (elapsedTime < 1f && !enemyDead)
             {
                 // Aumentamos el valor de elapsedTime en funcion del tiempo que ha transcurrido
                 elapsedTime += Time.deltaTime;

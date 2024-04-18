@@ -7,7 +7,10 @@ public class MovimientoEnemigo : MonoBehaviour
     public float distancia = 5f;  // Distancia que recorrerá el enemigo
     public float tiempoEspera = 2f; // Tiempo de espera en cada esquina del recorrido
     public GameManager gameManager;
+    private GameObject chrisVector;
     public Animator animator;
+    public bool enemyDead = false;
+    private Animator chrisAnimator;
 
     private Vector3 puntoInicial;  // Punto de inicio del movimiento
     private Vector3 puntoFinal;    // Punto final del movimiento
@@ -21,20 +24,32 @@ public class MovimientoEnemigo : MonoBehaviour
         // Iniciamos un metodo coroutine para poder pausarlo y retomarlo a nuestro gusto.
         StartCoroutine(MoverEnemigo());
         animator = GetComponent<Animator>();
+        chrisVector = GameObject.Find("Chris_Vector");
+        chrisAnimator = chrisVector.GetComponent<Animator>();
     }
-
+    private void Update()
+    {
+        if(enemyDead && chrisAnimator.GetFloat("StartAnimation") >  1)
+        {
+            animator.SetBool("IsIdle", true);
+        }
+        if(chrisAnimator.GetFloat("StartAnimation") == 1 && enemyDead)
+        {
+            animator.SetBool("IsDead", true);
+        }
+    }
     // Ejecutamos la funcion coroutine que hemos declarado anteriormente.
     IEnumerator MoverEnemigo()
     {
         // Creamos un bucle infinito.
-        while (gameManager.IsAlive)
+        while (gameManager.IsAlive && !enemyDead)
         {
             animator.SetBool("IsWalking", true);
             // Mueve al enemigo de un lado a otro en un bucle infinito.
             // Creamos un float denominado t para realizar un seguimiento del progreso del movimiento entre los puntos inicial y final.
             float t = 0f;
             // Creamos un bucle que se ejecute mientras que el objetivo no ha llegado a su destino.
-            while (t < 1f && gameManager.IsAlive)
+            while (t < 1f && gameManager.IsAlive && !enemyDead)
             {
                 // Aumentamos el valor t basandonos en el tiempo transcurrido, esto lo hacemos para suavizar el movimiento.
                 t += Time.deltaTime * velocidad / distancia;
@@ -43,8 +58,12 @@ public class MovimientoEnemigo : MonoBehaviour
                 // Pasa la funcion coroutine hasta el proximo frame.
                 yield return null;
             }
-            animator.SetBool("IsIdle", true);
-            animator.SetBool("IsWalking", false);
+            if(!enemyDead)
+            {
+                animator.SetBool("IsIdle", true);
+                animator.SetBool("IsWalking", false);
+            }
+            
             // Cuando el enemigo llega a su destino sale del bucle anterior y espera la mitad del tiempo deseado.
             yield return new WaitForSeconds(tiempoEspera / 2);
             
@@ -56,7 +75,7 @@ public class MovimientoEnemigo : MonoBehaviour
             // Guardamos temporalmente la rotacion de nuestro enemigo.
             Vector3 nuevaRotacion = transform.eulerAngles;
             // Creamos un bucle infinito mientras que la rotación no este completa.
-            while (elapsedTime < 1f && gameManager.IsAlive)
+            while (elapsedTime < 1f && gameManager.IsAlive && !enemyDead)
             {
                 // Aumentamos el valor de elapsedTime en funcion del tiempo que ha transcurrido
                 elapsedTime += Time.deltaTime;
@@ -70,8 +89,12 @@ public class MovimientoEnemigo : MonoBehaviour
 
             // Hacemos que el enemigo espere el valor introducido dividido entre 2.
             yield return new WaitForSeconds(tiempoEspera / 2);
-            animator.SetBool("IsWalking", true);
-            animator.SetBool("IsIdle", false);
+            if(!enemyDead)
+            {
+                animator.SetBool("IsWalking", true);
+                animator.SetBool("IsIdle", false);
+            }
+            
             // Cambiamos las direcciones
             // Creamos un vector3 y guardamos el valor de punto inicial
             Vector3 temp = puntoInicial;

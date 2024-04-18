@@ -12,34 +12,49 @@ public class RaycastDetection : MonoBehaviour
     public Animator animator;
     public GameObject muzleFlash;
     public AudioSource audioSource;
+    private Rotacion_enemigo_estatico rotacion_Enemigo_Estatico;
+    private MovimientoEnemigo movimientoEnemigo;
+    public bool active = true;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        if (GetComponent<MovimientoEnemigo>() != null)
+        {
+            movimientoEnemigo = GetComponent<MovimientoEnemigo>();
+        }
+        else if(GetComponent<Rotacion_enemigo_estatico>() != null)
+        {
+            rotacion_Enemigo_Estatico = GetComponent<Rotacion_enemigo_estatico>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        startPosition = this.transform.position;
-        startPosition.y += raycastHeight;
-        RaycastHit hit;
-        if(Physics.Raycast(startPosition, transform.forward, out hit, raycastDistance, 1 << 8))
+        if(active)
         {
-            if (hit.collider.CompareTag("Player"))
+            startPosition = this.transform.position;
+            startPosition.y += raycastHeight;
+            RaycastHit hit;
+            if (Physics.Raycast(startPosition, transform.forward, out hit, raycastDistance, 1 << 8))
             {
-                gameManager.IsAlive = false;
-                animator.SetBool("Shoot", true);
-                if (animator.GetFloat("ShotTiming") != 0 && !done)
+                if (hit.collider.CompareTag("Player"))
                 {
-                    gameManager.blood = true;
-                    audioSource.Play();
-                    muzleFlash.SetActive(true);
-                    done = true;
+                    gameManager.IsAlive = false;
+                    animator.SetBool("Shoot", true);
+                    if (animator.GetFloat("ShotTiming") != 0 && !done)
+                    {
+                        gameManager.blood = true;
+                        audioSource.Play();
+                        muzleFlash.SetActive(true);
+                        done = true;
+                    }
                 }
             }
+            Debug.DrawRay(startPosition, transform.forward * raycastDistance, Color.green);
         }
-        Debug.DrawRay(startPosition, transform.forward * raycastDistance, Color.green);
+        
         
     }
 }
