@@ -5,8 +5,11 @@ using UnityEngine;
 public class Rotacion_enemigo_estatico : MonoBehaviour
 {
     public float tiempoEspera = 2f; // Tiempo de espera en cada esquina del recorrido
+    public Animator animator;
     void Start()
     {
+
+        animator = GetComponent<Animator>();
         StartCoroutine(RotarEnemigo());
     }
 
@@ -16,6 +19,7 @@ public class Rotacion_enemigo_estatico : MonoBehaviour
         // Creamos un bucle infinito.
         while (true)
         {
+            animator.SetBool("IsIdle", true);
             // Cuando el enemigo llega a su destino sale del bucle anterior y espera la mitad del tiempo deseado.
             yield return new WaitForSeconds(tiempoEspera / 2);
             // Gira 180 grados.

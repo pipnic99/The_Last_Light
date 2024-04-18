@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,11 @@ public class GameManager : MonoBehaviour
         movimientoJugador.haciendoAccion = false;
         canpause = true;
     }
+    IEnumerator EsperarMuerte()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("Game_Scene");
+    }
     void Start()
     {
         /*hudGameObjects = new GameObject[4];
@@ -50,6 +56,7 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 StartCoroutine(Esperar1S());
+                hudGameObjects[4].SetActive(false);
             }
         }
         if(!IsAlive)
@@ -59,6 +66,7 @@ public class GameManager : MonoBehaviour
                 fleshImpact.SetActive(true);
                 audioSource.Play();
                 done = true;
+                StartCoroutine(EsperarMuerte());
             }
             
         }
