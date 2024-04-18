@@ -9,12 +9,14 @@ public class AccionJugador : MonoBehaviour
     public bool laserActivo = true;
     public bool puedesmatar = false;
     public bool puedesPulsarBoton = false;
+    private bool done = false;
     private GameObject actualEnemy;
     private MovimientoEnemigo movimientoEnemigo;
     private Rotacion_enemigo_estatico rotacion_Enemigo_Estatico;
     private RaycastDetection raycastDetection;
     private Transform transformBoton;
     public Animator animator;
+    public AudioSource stab;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,15 @@ public class AccionJugador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(animator.GetFloat("Stab") == 1 && !done)
+        {
+            stab.Play();
+            done = true;
+        }
+        else if(animator.GetFloat("Stab") == 0)
+        {
+            done = false;
+        }
         if (Input.GetKeyDown(KeyCode.E) && cantidadCuchillos.numeroCuchillos > 0)
         {
             matar = true;

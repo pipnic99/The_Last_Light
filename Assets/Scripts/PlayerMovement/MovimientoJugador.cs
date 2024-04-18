@@ -183,7 +183,7 @@ public class MovimientoJugador : MonoBehaviour
     }
     void Update()
     {
-        if(gameManager.IsAlive)
+        if (gameManager.IsAlive && animator.GetFloat("Stab") == 0)
         {
             movimientoHorizontal = Input.GetAxis("Horizontal");
             int movimientoHorizontalint = Mathf.RoundToInt(movimientoHorizontal);
@@ -466,7 +466,7 @@ public class MovimientoJugador : MonoBehaviour
                 }
             }
         }
-        else
+        else if(!gameManager.IsAlive)
         {
             animator.SetBool("IsDeath", true);
         }
