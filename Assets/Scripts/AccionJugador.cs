@@ -51,16 +51,30 @@ public class AccionJugador : MonoBehaviour
             laserActivo = false;
             foreach (Transform laser in transformBoton)
             {
-                laser.gameObject.tag = "LaserApagado";
+                if (laser.name != "LuzBoton")
+                {
+                    laser.gameObject.tag = "LaserApagado";
+                }
+                else if(laser.name == "LuzBoton")
+                {
+                    laser.gameObject.SetActive(false);
+                }
             }
-
         }
         else if (puedesPulsarBoton && Input.GetKeyDown(KeyCode.F) && !laserActivo)
         {
             laserActivo = true;
             foreach (Transform laser in transformBoton)
             {
-                laser.gameObject.tag = "LaserEncendido";
+                Debug.Log(laser.name);
+                if(laser.name != "LuzBoton")
+                {
+                    laser.gameObject.tag = "LaserEncendido";
+                }
+                else if (laser.name == "LuzBoton")
+                {
+                    laser.gameObject.SetActive(true);
+                }
             }
         }
     }

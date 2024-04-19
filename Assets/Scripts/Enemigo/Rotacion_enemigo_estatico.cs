@@ -7,15 +7,19 @@ public class Rotacion_enemigo_estatico : MonoBehaviour
     public float tiempoEspera = 2f; // Tiempo de espera en cada esquina del recorrido
     public Animator animator;
     public bool enemyDead = false;
+    private Animator chrisAnimator;
+    private GameObject chrisVector;
     void Start()
     {
 
         animator = GetComponent<Animator>();
         StartCoroutine(RotarEnemigo());
+        chrisVector = GameObject.Find("Chris_Vector");
+        chrisAnimator = chrisVector.GetComponent<Animator>();
     }
     private void Update()
     {
-        if(enemyDead)
+        if (chrisAnimator.GetFloat("StartAnimation") == 1 && enemyDead)
         {
             animator.SetBool("IsDead", true);
         }

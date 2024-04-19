@@ -74,6 +74,8 @@ public class MovimientoEnemigo : MonoBehaviour
             Vector3 nuevaEscala = transform.localScale;
             // Guardamos temporalmente la rotacion de nuestro enemigo.
             Vector3 nuevaRotacion = transform.eulerAngles;
+            animator.SetBool("IsTurning", true);
+            animator.SetBool("IsIdle", false);
             // Creamos un bucle infinito mientras que la rotación no este completa.
             while (elapsedTime < 1f && gameManager.IsAlive && !enemyDead)
             {
@@ -88,11 +90,12 @@ public class MovimientoEnemigo : MonoBehaviour
             }
 
             // Hacemos que el enemigo espere el valor introducido dividido entre 2.
-            yield return new WaitForSeconds(tiempoEspera / 2);
+            //yield return new WaitForSeconds(tiempoEspera / 2);
             if(!enemyDead)
             {
                 animator.SetBool("IsWalking", true);
                 animator.SetBool("IsIdle", false);
+                animator.SetBool("IsTurning", false);
             }
             
             // Cambiamos las direcciones

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovimientoPuerta : MonoBehaviour
 {
+    public AudioSource audioSource;
     public float velocidad = 2.0f;  // Puedes ajustar la velocidad según tus necesidades
     public GameManager gameManager;
     void Update()
@@ -32,13 +33,14 @@ public class MovimientoPuerta : MonoBehaviour
     System.Collections.IEnumerator InterpolarPosicion(Vector3 inicio, Vector3 fin, float duracion)
     {
         float tiempo = 0f;
-
+        audioSource.Play();
         while (tiempo < 1f)
         {
             tiempo += Time.deltaTime / duracion;
             transform.position = Vector3.Lerp(inicio, fin, tiempo);
             yield return null;
         }
+        audioSource.Stop();
 
         // Asegúrate de que la posición final sea exacta
         transform.position = fin;

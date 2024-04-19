@@ -5,10 +5,11 @@ using UnityEngine;
 public class BGMusic : MonoBehaviour
 {
     [SerializeField] AudioSource audioSource;
+    private float startVolume;
     // Start is called before the first frame update
     void Start()
     {
-        
+        startVolume = audioSource.volume;
     }
 
     // Update is called once per frame
@@ -16,11 +17,11 @@ public class BGMusic : MonoBehaviour
     {
         if(Time.timeScale == 0f)
         {
-            audioSource.volume = 0.3f;
+            audioSource.volume = startVolume / 2;
         }
         else
         {
-            audioSource.volume = 1f;
+            audioSource.volume = startVolume;
         }
     }
 }

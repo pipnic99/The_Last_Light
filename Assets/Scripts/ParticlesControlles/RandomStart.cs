@@ -6,6 +6,8 @@ public class RandomStart : MonoBehaviour
 {
     private float randomNumber;
     private bool notStarted = true;
+    private bool startAudio = false;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,12 @@ public class RandomStart : MonoBehaviour
     {
         ParticleSystem particleSystem = this.gameObject.GetComponent<ParticleSystem>();
         particleSystem.Play();
+
+    }
+    void StartAudio()
+    {
+        audioSource.Play();
+        Invoke("StartAudio", 2);
     }
     // Update is called once per frame
     void Update()
@@ -23,6 +31,12 @@ public class RandomStart : MonoBehaviour
         {
             Invoke("StartParticles", randomNumber);
             notStarted = false;
+            startAudio = true;
+        }
+        if(startAudio)
+        {
+            Invoke("StartAudio", 2 + randomNumber);
+            startAudio = false;
         }
     }
 }

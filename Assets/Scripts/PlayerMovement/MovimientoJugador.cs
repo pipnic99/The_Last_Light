@@ -42,7 +42,7 @@ public class MovimientoJugador : MonoBehaviour
     private bool saltoUp = true;
     private bool step1 = true;
     private bool step2 = false;
-    public AudioClip[] steps;
+    public AudioSource[] steps;
     private AudioSource audioSource;
 
     public Vector3 movimiento = new Vector3(0f, 0f, 0f);
@@ -194,15 +194,13 @@ public class MovimientoJugador : MonoBehaviour
                 animator.SetBool("IsWalking", true);
                 if (animator.GetFloat("Steps") > 0.1 && animator.GetFloat("Steps") < 1.1 && !step1)
                 {
-                    audioSource.clip = steps[0]; 
-                    audioSource.Play();
+                    steps[0].Play(); 
                     step1 = true;
                     StartCoroutine(PlaySecondStepAfterFirst());
                 }
                 else if(animator.GetFloat("Steps") > 1.1 && animator.GetFloat("Steps") < 2.2 && !step2)
                 {
-                    audioSource.clip = steps[1];
-                    audioSource.Play();
+                    steps[1].Play();
                     step2 = true;
                     StartCoroutine(PlayFirstStepAfterSecond());
                 }
