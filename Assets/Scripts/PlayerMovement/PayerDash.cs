@@ -9,7 +9,9 @@ public class PayerDash : MonoBehaviour
     public float dashTime;
     public float timedashCD;
     private bool dashCD = false;
+    public float delayAudio;
     private Animator animator;
+    [SerializeField] AudioSource dashSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +26,17 @@ public class PayerDash : MonoBehaviour
         {
             if(!moveScript.haciendoAccion)
             {
+                StartCoroutine(WaitForSound());
                 StartCoroutine(Dash());
                 dashCD = true;
             }
             
         }
+    }
+    IEnumerator WaitForSound()
+    {
+        yield return new WaitForSeconds(delayAudio);
+        dashSound.Play();
     }
     IEnumerator Dash()
     {
