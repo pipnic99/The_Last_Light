@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
     public bool blood = false;
     public GameObject fleshImpact;
     private bool done = false;
+    public GameObject objetoMenuDificultad;
+    public int difficulty = 0;
+    public GameObject[] NormalKnives;
+    public GameObject[] EasyKnives;
+    public CantidadCuchillos cantidadCuchillos;
     // Start is called before the first frame update
 
     // Creamos una corutina para esperar 1s despues de pulsar enter y que nos deje mover pasado el segundo.
@@ -47,7 +52,21 @@ public class GameManager : MonoBehaviour
         playMenu[0] = GameObject.Find("ExitBttn");
         playMenu[1] = GameObject.Find("PlayBttn");*/
     }
-
+    public void SetDifficulty(string diff)
+    {
+        if(diff == "Easy")
+        {
+            cantidadCuchillos.numeroCuchillos = 4;
+        }
+        else if(diff == "Normal")
+        {
+            cantidadCuchillos.numeroCuchillos = 2;
+        }
+        else if(diff == "ChrisVector")
+        {
+            cantidadCuchillos.numeroCuchillos = 0;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -90,6 +109,16 @@ public class GameManager : MonoBehaviour
         {
             menu.SetActive(false);
         }
+    }
+    public void EnterDifficulty()
+    {
+        objetoMenuDificultad.SetActive(true);
+        optionMenu.SetActive(false);
+    }
+    public void ExitDifficulty()
+    {
+        objetoMenuDificultad.SetActive(false);
+        optionMenu.SetActive(true);
     }
     public void BackMenu()
     {

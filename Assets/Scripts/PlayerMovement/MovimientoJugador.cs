@@ -34,8 +34,8 @@ public class MovimientoJugador : MonoBehaviour
     private bool finSubirEscalera = false;
     public bool subirEscalera = false;
     public int leftorright;
-    private bool yaGiradoIzquierda = false;
-    private bool yaGiradoDerecha = true;
+    public bool yaGiradoIzquierda = false;
+    public bool yaGiradoDerecha = true;
     bool movimientoAnteriorIzquierda = false;
     bool movimientoAnteriorDerecha = false;
     public float movimientoHorizontal;
@@ -64,7 +64,7 @@ public class MovimientoJugador : MonoBehaviour
             transform.eulerAngles = Vector3.Lerp(nuevaRotacion, nuevaRotacion + new Vector3(0f, 180f, 0f), tRotacion);
         }
     }
-    private void RotarAccion(float rotacion)
+    public void RotarAccion(float rotacion)
     {
         if (yaGiradoIzquierda)
         {
@@ -86,7 +86,7 @@ public class MovimientoJugador : MonoBehaviour
             transform.eulerAngles = Vector3.Lerp(nuevaRotacion, nuevaRotacion + new Vector3(0f, rotacion, 0f), tRotacion);
         }
     }
-    private void RotarDerecha()
+    public void RotarDerecha()
     {
         float elapsedTime = 0f;
         // Nos guardamos la escala actual por si hacemos alguna modificación poder volver a la escala original.

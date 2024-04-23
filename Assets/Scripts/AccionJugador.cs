@@ -22,10 +22,10 @@ public class AccionJugador : MonoBehaviour
     {
 
     }
-    IEnumerator Waitfor10Seconds()
+    IEnumerator Waitfor10Seconds(GameObject enemigo)
     {
         yield return new WaitForSeconds(10);
-        actualEnemy.gameObject.SetActive(false);
+        enemigo.gameObject.SetActive(false);
 
     }
     // Update is called once per frame
@@ -49,8 +49,16 @@ public class AccionJugador : MonoBehaviour
         {
             // Ponemos el laser en falso y cambiamos el tag a laser apagado a los laseres que estan dentro del boton con el que estamos colisionando para saber que laseres tienen que estar apagados.
             laserActivo = false;
+            animator.SetTrigger("ButtonClick");
             foreach (Transform laser in transformBoton)
             {
+                
+                if(laser.name == "OnOffSound")
+                {
+                    AudioSource sonidoLaser;
+                    sonidoLaser = laser.GetComponent<AudioSource>();
+                    sonidoLaser.Play();
+                }
                 if (laser.name != "LuzBoton")
                 {
                     laser.gameObject.tag = "LaserApagado";
@@ -64,6 +72,7 @@ public class AccionJugador : MonoBehaviour
         else if (puedesPulsarBoton && Input.GetKeyDown(KeyCode.F) && !laserActivo)
         {
             laserActivo = true;
+            animator.SetTrigger("ButtonClick");
             foreach (Transform laser in transformBoton)
             {
                 Debug.Log(laser.name);
@@ -104,7 +113,7 @@ public class AccionJugador : MonoBehaviour
                 raycastDetection.active = false;
                 
                 actualEnemy = collision.gameObject;
-                StartCoroutine(Waitfor10Seconds());
+                StartCoroutine(Waitfor10Seconds(actualEnemy));
                 puedesmatar = false;
                 matar = false;
                 animator.SetTrigger("Kill");

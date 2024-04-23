@@ -8,6 +8,7 @@ public class Menu_Pausa : MonoBehaviour
     public GameObject objetoOptions;
     public bool pausa = false;
     public GameManager gameManager;
+    public GameObject objetoMenuDificultad;
     // Start is called before the first frame update
     void Start()
     {
