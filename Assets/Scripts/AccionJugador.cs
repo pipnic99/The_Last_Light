@@ -10,13 +10,18 @@ public class AccionJugador : MonoBehaviour
     public bool puedesmatar = false;
     public bool puedesPulsarBoton = false;
     private bool done = false;
+    private bool pushingButtton = false;
+    private bool rotated = false;
     private GameObject actualEnemy;
     private MovimientoEnemigo movimientoEnemigo;
     private Rotacion_enemigo_estatico rotacion_Enemigo_Estatico;
     private RaycastDetection raycastDetection;
+    private bool shutdownlaser = false;
+    private bool turnuplaser = false;
     private Transform transformBoton;
     public Animator animator;
     public AudioSource stab;
+    public MovimientoJugador movimientoJugador;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +36,20 @@ public class AccionJugador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(rotated && animator.GetFloat("EndButton") == 1 && pushingButtton)
+        {
+            if(movimientoJugador.yaGiradoDerecha)
+            {
+                movimientoJugador.RotarAccion(90);
+            }
+            else
+            {
+                movimientoJugador.RotarAccion(90);
+            }
+            rotated = false;
+            pushingButtton = false;
+            movimientoJugador.haciendoAccion = false;
+        }
         if(animator.GetFloat("Stab") == 1 && !done)
         {
             stab.Play();
@@ -45,15 +64,24 @@ public class AccionJugador : MonoBehaviour
             matar = true;
             cantidadCuchillos.numeroCuchillos -= 1;
         }
-        if (puedesPulsarBoton && Input.GetKeyDown(KeyCode.F) && laserActivo)
+        if (puedesPulsarBoton && Input.GetKeyDown(KeyCode.F) && laserActivo && !pushingButtton)
         {
             // Ponemos el laser en falso y cambiamos el tag a laser apagado a los laseres que estan dentro del boton con el que estamos colisionando para saber que laseres tienen que estar apagados.
             laserActivo = false;
             animator.SetTrigger("ButtonClick");
+            movimientoJugador.RotarAccion(-90);
+            rotated = true;
+            pushingButtton = true;
+            movimientoJugador.haciendoAccion = true;
+            shutdownlaser = true;
+        }
+        if(shutdownlaser && animator.GetFloat("PushButton") == 1)
+        {
+            AudioSource sonidoBoton = transformBoton.GetComponent<AudioSource>();
+            sonidoBoton.Play();
             foreach (Transform laser in transformBoton)
             {
-                
-                if(laser.name == "OnOffSound")
+                if (laser.name == "OnOffSound")
                 {
                     AudioSource sonidoLaser;
                     sonidoLaser = laser.GetComponent<AudioSource>();
@@ -63,20 +91,21 @@ public class AccionJugador : MonoBehaviour
                 {
                     laser.gameObject.tag = "LaserApagado";
                 }
-                else if(laser.name == "LuzBoton")
+                else if (laser.name == "LuzBoton")
                 {
                     laser.gameObject.SetActive(false);
                 }
             }
+            shutdownlaser = false;
         }
-        else if (puedesPulsarBoton && Input.GetKeyDown(KeyCode.F) && !laserActivo)
+        if(turnuplaser && animator.GetFloat("PushButton") == 1)
         {
-            laserActivo = true;
-            animator.SetTrigger("ButtonClick");
+            AudioSource sonidoBoton = transformBoton.GetComponent<AudioSource>();
+            sonidoBoton.Play();
             foreach (Transform laser in transformBoton)
             {
                 Debug.Log(laser.name);
-                if(laser.name != "LuzBoton")
+                if (laser.name != "LuzBoton")
                 {
                     laser.gameObject.tag = "LaserEncendido";
                 }
@@ -85,6 +114,18 @@ public class AccionJugador : MonoBehaviour
                     laser.gameObject.SetActive(true);
                 }
             }
+            turnuplaser = false;
+        }
+        else if (puedesPulsarBoton && Input.GetKeyDown(KeyCode.F) && !laserActivo && !pushingButtton)
+        {
+            laserActivo = true;
+            animator.SetTrigger("ButtonClick");
+            movimientoJugador.RotarAccion(-90);
+            rotated = true;
+            movimientoJugador.haciendoAccion = true;
+            pushingButtton = true;
+            turnuplaser = true;
+            
         }
     }
     private void OnTriggerStay(Collider collision)
