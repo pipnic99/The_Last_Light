@@ -40,9 +40,6 @@ public class MovimientoJugador : MonoBehaviour
     bool movimientoAnteriorDerecha = false;
     public float movimientoHorizontal;
     private bool saltoUp = true;
-    private bool step1 = true;
-    private bool step2 = false;
-    public AudioSource[] steps;
     private AudioSource audioSource;
 
     public Vector3 movimiento = new Vector3(0f, 0f, 0f);
@@ -171,16 +168,6 @@ public class MovimientoJugador : MonoBehaviour
             subirEscalera = false;
         }
     }
-    IEnumerator PlaySecondStepAfterFirst()
-    {
-        yield return new WaitForSeconds(audioSource.clip.length); // Wait for the first step to finish playing
-        step2 = false; // Reset the flag for the second step
-    }
-    IEnumerator PlayFirstStepAfterSecond()
-    {
-        yield return new WaitForSeconds(audioSource.clip.length); // Wait for the second step to finish playing
-        step1 = false; // Reset the flag for the first step
-    }
     void Update()
     {
         if (gameManager.IsAlive && animator.GetFloat("Stab") == 0)
@@ -192,25 +179,10 @@ public class MovimientoJugador : MonoBehaviour
             if (Mathf.Abs(movimientoHorizontal) > 0 && !haciendoAccion )
             {
                 animator.SetBool("IsWalking", true);
-                if (animator.GetFloat("Steps") > 0.1 && animator.GetFloat("Steps") < 1.1 && !step1)
-                {
-                    steps[0].Play(); 
-                    step1 = true;
-                    StartCoroutine(PlaySecondStepAfterFirst());
-                }
-                else if(animator.GetFloat("Steps") > 1.1 && animator.GetFloat("Steps") < 2.2 && !step2)
-                {
-                    steps[1].Play();
-                    step2 = true;
-                    StartCoroutine(PlayFirstStepAfterSecond());
-                }
             }
             else
             {
                 animator.SetBool("IsWalking", false);
-                audioSource.Stop();
-                step1 = false;
-                step2 = false;
             }
 
             if (Mathf.Abs(movimientoHorizontal) == 0 && movimientoVertical < 0.5 && !haciendoAccion)
