@@ -59,7 +59,7 @@ public class AccionJugador : MonoBehaviour
         {
             done = false;
         }
-        if (Input.GetKeyDown(KeyCode.E) && cantidadCuchillos.numeroCuchillos > 0)
+        if (Input.GetKeyDown(KeyCode.E) && cantidadCuchillos.numeroCuchillos > 0 && puedesmatar)
         {
             matar = true;
             cantidadCuchillos.numeroCuchillos -= 1;
