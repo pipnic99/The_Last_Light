@@ -1,0 +1,1179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!200 &20000000
+ShaderVariantCollection:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NewShaderVariants
+  m_Shaders:
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: 
+        passType: 10
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 10
+      - keywords: 
+        passType: 13
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 13
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: 
+        passType: 10
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 10
+      - keywords: 
+        passType: 13
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 13
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: 
+        passType: 10
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 10
+      - keywords: 
+        passType: 13
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 13
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: 
+        passType: 10
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 10
+      - keywords: 
+        passType: 13
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 13
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: 
+        passType: 10
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 10
+      - keywords: 
+        passType: 13
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 13
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: 
+        passType: 10
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 10
+      - keywords: 
+        passType: 13
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 13
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: 
+        passType: 10
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 10
+      - keywords: 
+        passType: 13
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 13
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: 
+        passType: 10
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 10
+      - keywords: 
+        passType: 13
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 13
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: 
+        passType: 10
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 10
+      - keywords: 
+        passType: 13
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 13
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: 
+        passType: 10
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 10
+      - keywords: 
+        passType: 13
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 13
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: 
+        passType: 10
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 10
+      - keywords: 
+        passType: 13
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 13
+  - first: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 66, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 67, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH SHADOWS_SCREEN
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH SHADOWS_SCREEN _METALLICGLOSSMAP _NORMALMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH SHADOWS_SCREEN _METALLICGLOSSMAP _NORMALMAP
+          _PARALLAXMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH SHADOWS_SCREEN _METALLICGLOSSMAP _PARALLAXMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH SHADOWS_SCREEN _NORMALMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH SHADOWS_SCREEN _NORMALMAP _PARALLAXMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH VERTEXLIGHT_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH VERTEXLIGHT_ON _ALPHAPREMULTIPLY_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH VERTEXLIGHT_ON _ALPHAPREMULTIPLY_ON _NORMALMAP
+          _PARALLAXMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH VERTEXLIGHT_ON _METALLICGLOSSMAP _NORMALMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH VERTEXLIGHT_ON _METALLICGLOSSMAP _NORMALMAP
+          _PARALLAXMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH VERTEXLIGHT_ON _METALLICGLOSSMAP _PARALLAXMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH VERTEXLIGHT_ON _NORMALMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH VERTEXLIGHT_ON _NORMALMAP _PARALLAXMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ALPHAPREMULTIPLY_ON
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ALPHAPREMULTIPLY_ON _NORMALMAP _PARALLAXMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _EMISSION
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _EMISSION _NORMALMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _METALLICGLOSSMAP _NORMALMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
+          _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _METALLICGLOSSMAP _PARALLAXMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _NORMALMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _NORMALMAP _PARALLAXMAP
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _PARALLAXMAP
+        passType: 4
+      - keywords: LIGHTPROBE_SH VERTEXLIGHT_ON _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
+        passType: 4
+      - keywords: LIGHTPROBE_SH VERTEXLIGHT_ON _METALLICGLOSSMAP _PARALLAXMAP
+        passType: 4
+      - keywords: LIGHTPROBE_SH VERTEXLIGHT_ON _NORMALMAP
+        passType: 4
+      - keywords: LIGHTPROBE_SH _ALPHAPREMULTIPLY_ON _NORMALMAP _PARALLAXMAP
+        passType: 4
+      - keywords: DIRECTIONAL
+        passType: 5
+      - keywords: DIRECTIONAL _METALLICGLOSSMAP _NORMALMAP
+        passType: 5
+      - keywords: DIRECTIONAL _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
+        passType: 5
+      - keywords: DIRECTIONAL _NORMALMAP
+        passType: 5
+      - keywords: DIRECTIONAL _NORMALMAP _PARALLAXMAP
+        passType: 5
+      - keywords: POINT
+        passType: 5
+      - keywords: POINT SHADOWS_CUBE SHADOWS_SOFT
+        passType: 5
+      - keywords: POINT SHADOWS_CUBE SHADOWS_SOFT _METALLICGLOSSMAP _NORMALMAP
+        passType: 5
+      - keywords: POINT SHADOWS_CUBE SHADOWS_SOFT _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
+        passType: 5
+      - keywords: POINT SHADOWS_CUBE SHADOWS_SOFT _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
+          _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 5
+      - keywords: POINT SHADOWS_CUBE SHADOWS_SOFT _METALLICGLOSSMAP _PARALLAXMAP
+        passType: 5
+      - keywords: POINT SHADOWS_CUBE SHADOWS_SOFT _NORMALMAP
+        passType: 5
+      - keywords: POINT SHADOWS_CUBE SHADOWS_SOFT _NORMALMAP _PARALLAXMAP
+        passType: 5
+      - keywords: POINT SHADOWS_CUBE SHADOWS_SOFT _PARALLAXMAP
+        passType: 5
+      - keywords: POINT _ALPHAPREMULTIPLY_ON
+        passType: 5
+      - keywords: POINT _ALPHAPREMULTIPLY_ON _NORMALMAP _PARALLAXMAP
+        passType: 5
+      - keywords: POINT _METALLICGLOSSMAP _NORMALMAP
+        passType: 5
+      - keywords: POINT _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
+        passType: 5
+      - keywords: POINT _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 5
+      - keywords: POINT _METALLICGLOSSMAP _PARALLAXMAP
+        passType: 5
+      - keywords: POINT _NORMALMAP
+        passType: 5
+      - keywords: POINT _NORMALMAP _PARALLAXMAP
+        passType: 5
+      - keywords: POINT _PARALLAXMAP
+        passType: 5
+      - keywords: SHADOWS_DEPTH SHADOWS_SOFT SPOT
+        passType: 5
+      - keywords: SHADOWS_DEPTH SHADOWS_SOFT SPOT _METALLICGLOSSMAP _NORMALMAP
+        passType: 5
+      - keywords: SHADOWS_DEPTH SHADOWS_SOFT SPOT _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
+        passType: 5
+      - keywords: SHADOWS_DEPTH SHADOWS_SOFT SPOT _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
+          _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 5
+      - keywords: SHADOWS_DEPTH SHADOWS_SOFT SPOT _METALLICGLOSSMAP _PARALLAXMAP
+        passType: 5
+      - keywords: SHADOWS_DEPTH SHADOWS_SOFT SPOT _NORMALMAP
+        passType: 5
+      - keywords: SHADOWS_DEPTH SHADOWS_SOFT SPOT _NORMALMAP _PARALLAXMAP
+        passType: 5
+      - keywords: SPOT
+        passType: 5
+      - keywords: SPOT _ALPHAPREMULTIPLY_ON
+        passType: 5
+      - keywords: SPOT _ALPHAPREMULTIPLY_ON _NORMALMAP _PARALLAXMAP
+        passType: 5
+      - keywords: SPOT _METALLICGLOSSMAP _NORMALMAP
+        passType: 5
+      - keywords: SPOT _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
+        passType: 5
+      - keywords: SPOT _NORMALMAP
+        passType: 5
+      - keywords: SPOT _NORMALMAP _PARALLAXMAP
+        passType: 5
+      - keywords: 
+        passType: 8
+      - keywords: SHADOWS_CUBE
+        passType: 8
+      - keywords: SHADOWS_CUBE _ALPHAPREMULTIPLY_ON
+        passType: 8
+      - keywords: SHADOWS_CUBE _METALLICGLOSSMAP
+        passType: 8
+      - keywords: SHADOWS_CUBE _METALLICGLOSSMAP _PARALLAXMAP
+        passType: 8
+      - keywords: SHADOWS_CUBE _METALLICGLOSSMAP _PARALLAXMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 8
+      - keywords: SHADOWS_CUBE _PARALLAXMAP
+        passType: 8
+      - keywords: SHADOWS_DEPTH
+        passType: 8
+      - keywords: SHADOWS_DEPTH _ALPHAPREMULTIPLY_ON
+        passType: 8
+      - keywords: SHADOWS_DEPTH _ALPHAPREMULTIPLY_ON _PARALLAXMAP
+        passType: 8
+      - keywords: SHADOWS_DEPTH _METALLICGLOSSMAP
+        passType: 8
+      - keywords: SHADOWS_DEPTH _METALLICGLOSSMAP _PARALLAXMAP
+        passType: 8
+      - keywords: SHADOWS_DEPTH _METALLICGLOSSMAP _PARALLAXMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+        passType: 8
+      - keywords: SHADOWS_DEPTH _PARALLAXMAP
+        passType: 8
+      - keywords: _ALPHAPREMULTIPLY_ON _PARALLAXMAP
+        passType: 8
+      - keywords: _METALLICGLOSSMAP
+        passType: 8
+      - keywords: _METALLICGLOSSMAP _PARALLAXMAP
+        passType: 8
+      - keywords: _PARALLAXMAP
+        passType: 8
+  - first: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: SOFTPARTICLES_ON
+        passType: 0
+  - first: {fileID: 202, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: SOFTPARTICLES_ON
+        passType: 0
+  - first: {fileID: 203, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: SOFTPARTICLES_ON
+        passType: 0
+  - first: {fileID: 9000, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9001, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9002, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9003, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9004, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9007, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9101, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9103, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9104, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: f1531a9bd4087ff468de8de09f6ba126, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: b9b5b0990ea6cfa4d96c89a9c1cec3e9, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 50255fa344dbd814c910fdafc5692b09, type: 3}
+    second:
+      variants:
+      - keywords: AURA AURA_USE_CUBIC_FILTERING AURA_USE_DITHERING
+        passType: 0
+      - keywords: AURA AURA_USE_DITHERING
+        passType: 0
+  - first: {fileID: 4800000, guid: c5fbc0cbc0ab471c9d7bc4b321f04cff, type: 3}
+    second:
+      variants:
+      - keywords: SOFTPARTICLES_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 596b4dcd3bb54caeafc81e5154537134, type: 3}
+    second:
+      variants:
+      - keywords: LIGHTPROBE_SH
+        passType: 4
+      - keywords: LIGHTPROBE_SH VERTEXLIGHT_ON
+        passType: 4
+      - keywords: POINT
+        passType: 5
+      - keywords: SPOT
+        passType: 5
+  - first: {fileID: 4800000, guid: b11b42c7f55d4ae7aaa488cfcf850402, type: 3}
+    second:
+      variants:
+      - keywords: LIGHTPROBE_SH
+        passType: 4
+      - keywords: LIGHTPROBE_SH VERTEXLIGHT_ON
+        passType: 4
+      - keywords: POINT
+        passType: 5
+      - keywords: SPOT
+        passType: 5
+  - first: {fileID: 4800000, guid: c1e1d3119c6fd4646aea0b4b74cacc1a, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 4bf4cff0d0bac3d43894e2e8839feb40, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 0ef78d24e85a44f4da9d5b5eaa00e50b, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 382151503e2a43a4ebb7366d1632731d, type: 3}
+    second:
+      variants:
+      - keywords: BLOOM FINALPASS
+        passType: 0
+  - first: {fileID: 4800000, guid: c04d5f9af6634b14682936faa617dc69, type: 3}
+    second:
+      variants:
+      - keywords: DIRECTIONAL
+        passType: 4
+      - keywords: POINT
+        passType: 5
+      - keywords: 
+        passType: 10
+      - keywords: 
+        passType: 11
+  - first: {fileID: 4800000, guid: a16365e8c873daa4c94919438490b905, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 4386e57b23a56004c93e1d57d2bbcb4f, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 50b406436c6214c49aaaa6011b71dde8, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 36e335017ad71d54fbb10842863188ae, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: c8b6a681c7b4e2e4785ffab093907f9e, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 5caf62d8bd7c44596ace77ef9eb8ea31, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: da07703fcc09f8d4799221050659bd55, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 19dfbb09098c9584a83c956fbd6c5d79, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 13
+  - first: {fileID: 4800000, guid: 2df96b66b5510f94b98df2ac6f926ef4, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: -6465566751694194690, guid: 8d6af9f45d2ea52408f46aa4d15e80d8, type: 3}
+    second:
+      variants:
+      - keywords: DIRECTIONAL LIGHTPROBE_SH VERTEXLIGHT_ON _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL LIGHTPROBE_SH _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 4
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: DIRECTIONAL _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: DIRECTIONAL _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT SHADOWS_CUBE SHADOWS_SOFT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: POINT SHADOWS_CUBE SHADOWS_SOFT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: POINT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: POINT _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: SHADOWS_DEPTH SHADOWS_SOFT SPOT _ADDITIONAL_LIGHTS_VERTEX
+        passType: 5
+      - keywords: SHADOWS_DEPTH SHADOWS_SOFT SPOT _ADDITIONAL_LIGHTS_VERTEX _BUILTIN_ALPHATEST_ON
+          _BUILTIN_AlphaClip
+        passType: 5
+      - keywords: SHADOWS_CUBE
+        passType: 8
+      - keywords: SHADOWS_CUBE _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 8
+      - keywords: SHADOWS_DEPTH
+        passType: 8
+      - keywords: SHADOWS_DEPTH _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 8
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 8
+      - keywords: 
+        passType: 13
+      - keywords: _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip
+        passType: 13
+  - first: {fileID: 4800000, guid: 0b3b82b438158984dbccd69f0afe6ae6, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 3818b9ab8df317a4283de6940b594723, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 38f62d38eebe79c418d9572823b61386, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: cd270bc83dc0ce644bf351c3f5b7f30f, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 5df6daab6a21e1b4a8730bacdb8bdeec, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 78ac6c44194fb734195d6049bcfaee71, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: bc93937138cb1054e98cf187d5a71cbb, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0

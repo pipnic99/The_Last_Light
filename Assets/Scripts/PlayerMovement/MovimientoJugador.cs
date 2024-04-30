@@ -13,6 +13,7 @@ public class MovimientoJugador : MonoBehaviour
     public float gravedad = 20f;
     public float distanciaSubir = 6f;
     public float profundiadMovimientoJugador = 1f;
+    public DissolvingController dissolvingController;
     public bool haciendoAccion = true;
     public GameManager gameManager;
     // Creamos todas las booleanas que necesitaremos para las condiciones.
@@ -38,8 +39,10 @@ public class MovimientoJugador : MonoBehaviour
     public bool yaGiradoDerecha = true;
     bool movimientoAnteriorIzquierda = false;
     bool movimientoAnteriorDerecha = false;
+    public bool deathbylaser = false;
     public float movimientoHorizontal;
     private bool saltoUp = true;
+    private Vector3 laserPosition;
     private AudioSource audioSource;
 
     public Vector3 movimiento = new Vector3(0f, 0f, 0f);
@@ -137,7 +140,9 @@ public class MovimientoJugador : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("LaserEncendido"))
         {
-            Debug.Log("Has tocado el laser");
+            deathbylaser = true;
+            gameManager.IsAlive = false;
+            laserPosition = collision.transform.position;
         }
     }
     IEnumerator CdSalto()
@@ -436,9 +441,19 @@ public class MovimientoJugador : MonoBehaviour
                 }
             }
         }
-        else if(!gameManager.IsAlive)
+        else if(!gameManager.IsAlive && !deathbylaser)
         {
             animator.SetBool("IsDeath", true);
+        }
+        else if (!gameManager.IsAlive && deathbylaser)
+        {
+            animator.SetBool("LaserDeath", true);
+            if(laserPosition.x + 5f > this.transform.position.x)
+            {
+                movimiento = new Vector3(-5, 0, 0);
+                characterController.Move(movimiento * Time.deltaTime);
+            }
+            
         }
     }
 }

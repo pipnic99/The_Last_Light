@@ -85,9 +85,8 @@ public class GameManager : MonoBehaviour
                 fleshImpact.SetActive(true);
                 audioSource.Play();
                 done = true;
-                StartCoroutine(EsperarMuerte());
             }
-            
+            StartCoroutine(EsperarMuerte());
         }
     }
     public void Play()
