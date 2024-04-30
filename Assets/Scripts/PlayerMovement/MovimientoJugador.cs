@@ -142,7 +142,7 @@ public class MovimientoJugador : MonoBehaviour
         {
             deathbylaser = true;
             gameManager.IsAlive = false;
-            laserPosition = collision.transform.position;
+            laserPosition = transform.position;
         }
     }
     IEnumerator CdSalto()
@@ -448,8 +448,10 @@ public class MovimientoJugador : MonoBehaviour
         else if (!gameManager.IsAlive && deathbylaser)
         {
             animator.SetBool("LaserDeath", true);
-            if(laserPosition.x + 5f > this.transform.position.x)
+            if(laserPosition.x - 3f < this.transform.position.x)
             {
+                Debug.Log(laserPosition);
+                Debug.Log("player " + transform.position);
                 movimiento = new Vector3(-5, 0, 0);
                 characterController.Move(movimiento * Time.deltaTime);
             }
