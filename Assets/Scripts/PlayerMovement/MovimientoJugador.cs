@@ -43,7 +43,7 @@ public class MovimientoJugador : MonoBehaviour
     public float movimientoHorizontal;
     private bool saltoUp = true;
     private Vector3 laserPosition;
-    private AudioSource audioSource;
+    public AudioSource laserHit;
 
     public Vector3 movimiento = new Vector3(0f, 0f, 0f);
     private void RotarIzquierda()
@@ -110,7 +110,6 @@ public class MovimientoJugador : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         posicionZJugador = transform.position.z;
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerStay(Collider collision)
@@ -143,6 +142,7 @@ public class MovimientoJugador : MonoBehaviour
             deathbylaser = true;
             gameManager.IsAlive = false;
             laserPosition = transform.position;
+            laserHit.Play();
         }
     }
     IEnumerator CdSalto()
