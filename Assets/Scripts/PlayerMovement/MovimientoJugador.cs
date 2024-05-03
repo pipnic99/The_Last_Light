@@ -450,8 +450,6 @@ public class MovimientoJugador : MonoBehaviour
             animator.SetBool("LaserDeath", true);
             if(laserPosition.x - 3f < this.transform.position.x)
             {
-                Debug.Log(laserPosition);
-                Debug.Log("player " + transform.position);
                 movimiento = new Vector3(-5, 0, 0);
                 characterController.Move(movimiento * Time.deltaTime);
             }
