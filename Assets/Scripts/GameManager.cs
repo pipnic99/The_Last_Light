@@ -57,14 +57,17 @@ public class GameManager : MonoBehaviour
         if(diff == "Easy")
         {
             cantidadCuchillos.numeroCuchillos = 4;
+            ExitDifficulty();
         }
         else if(diff == "Normal")
         {
             cantidadCuchillos.numeroCuchillos = 2;
+            ExitDifficulty();
         }
         else if(diff == "ChrisVector")
         {
             cantidadCuchillos.numeroCuchillos = 0;
+            ExitDifficulty();
         }
     }
     // Update is called once per frame
